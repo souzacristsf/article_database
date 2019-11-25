@@ -60,7 +60,7 @@ sed 's/^ARCHIVELOG/NOARCHIVELOG/g'  > new_controlfile.sql
 ```
 Se atente para o comando */DBPROD/DBTEST/*, substitua pelos nomes que envolve a sua instância.
 
-Percebe-se que o comando modificou o arquivo de controle de **REUSE** para **SET**, usado para setar com o novo nome ```DBTEST``` e como esse banco será utilizado para ambiente de teste, faz-se a alteração do modo **ARCHIVELOG** para **NOARCHIVELOG**, pois não pretende-se recuperar o banco de dados em caso de falha. A imagem abaixo apresenta a saida do comando ```sed```.
+Percebe-se que o comando modificou o arquivo de controle de **REUSE** para **SET**, usado para setar com o novo nome ```DBTEST``` e como esse banco será utilizado para ambiente de teste, faz-se a alteração do modo **ARCHIVELOG** para **NOARCHIVELOG**, pois não pretende-se recuperar o banco de dados em caso de falha. A imagem abaixo apresenta a saida do comando ```sed```.   
 ![](../img/controlfile.png)
 > **Observação:** Nota-se o uso do comando *[sed](https://linux.die.net/man/1/sed)* que é um editor de textos não iterativo para manipulação de arquivos e streams do Unix/Linux, permiti substituir e “casar” padrões, utilizando Expressões Regulares. 
 
