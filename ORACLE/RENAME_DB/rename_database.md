@@ -207,20 +207,11 @@ Até o próximo artigo e vamos em frente!!!
 
 #FocoForçaFé
 
-<a href="https://www.linkedin.com/in/michel-ferreira-souza/" target="_blank">Michel Souza</a><br>
+[Michel Souza](https://www.linkedin.com/in/michel-ferreira-souza/)
 
 ### Referências
-[adjustable](http://google.com "Giiidd"){:target="_blank"}
-
-<a href="http://www.dba-oracle.com/t_linux_oracle_oraenv.htm" target="blank">Linux oraenv Tips</a><br>
-<a href="http://www.dba-oracle.com/t_linux_oracle_oraenv.htm" target="blank">Linux oraenv Tips</a><br>
-<a href="http://www.dba-oracle.com/concepts/pfile_spfile.htm" target="blank">create spfile from pfile tips</a><br>
-<a href="http://www.dba-oracle.com/t_rename_database_oracle_sid.htm" target="_blank">How to rename an Oracle database ORACLE_SID?</a><br>
-<a href="https://linux.die.net/man/1/sed" target="_blank">Command sed</a><br>
-<a href="https://docs.oracle.com/cd/E11882_01/server.112/e22490/dbnewid.htm#SUTIL014" target="_blank">DBNEWID Utility</a><br>
-
-<!-- [Linux oraenv Tips](http://www.dba-oracle.com/t_linux_oracle_oraenv.htm) <br>
-[create spfile from pfile tips](http://www.dba-oracle.com/concepts/pfile_spfile.htm) <br>
+[Linux oraenv Tips](http://www.dba-oracle.com/t_linux_oracle_oraenv.htm){:target="_blank"} <br>
+[create spfile from pfile tips](http://www.dba-oracle.com/concepts/pfile_spfile.htm){:target="_blank"} <br>
 [How to rename an Oracle database ORACLE_SID?](http://www.dba-oracle.com/t_rename_database_oracle_sid.htm) <br>
 [Command sed](https://linux.die.net/man/1/sed) <br>
-[DBNEWID Utility](https://docs.oracle.com/cd/E11882_01/server.112/e22490/dbnewid.htm#SUTIL014) -->
+[DBNEWID Utility](https://docs.oracle.com/cd/E11882_01/server.112/e22490/dbnewid.htm#SUTIL014)
