@@ -3,6 +3,8 @@
 ![](../img/RN_DB.png)
 
 # Alterando o nome do banco de dados Oracle (DBA)
+##### 24/11/2019 [Michel Souza](https://www.linkedin.com/in/michel-ferreira-souza/)
+
 
 Fala galera, neste post apresento como alterar o nome de um banco de dados Oracle. 
 Faz um tempo que planejo escrever artigos na área em que atuo e vejo que esse é o momento. Então, hoje darei início ao meu primeiro artigo e o intuito é apresentar algo que aplico no dia a dia, e também com o conhecimento que venho adquirindo com o estudo para a tão sonhada certificação.
