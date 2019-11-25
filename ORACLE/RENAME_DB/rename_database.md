@@ -195,7 +195,7 @@ SQL>  alter database open RESETLOGS;
 Conforme na imagem abaixo, nota-se que o arquivo de controlfile foi criado com sucesso e o banco aberto no modo read-write.
 ![](../img/open_database.png)
 
->**Nota**: realizado a alteração do nome do banco de dados é necessario recriar o arquivo de senha *passwordfile*, atualizar os arquivos *tnsname.ora* e *listener.ora* com o nome do novo db_name.
+>**Nota**: realizado a alteração do nome do banco de dados, recrie o arquivo de senha *passwordfile*, atualize os arquivos *tnsname.ora* e *listener.ora* com o nome do novo db_name.
 
 ##### [Adicionado] - 25/11/2019
 Como mencionado no início do artigo, outra forma de alterar o nome do banco de dados é utilizando o utilitário DBNEWID.
