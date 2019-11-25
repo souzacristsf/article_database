@@ -207,7 +207,7 @@ Até o próximo artigo e vamos em frente!!!
 
 #FocoForçaFé
 
-<a href="(https://www.linkedin.com/in/michel-ferreira-souza/" target="_blank">Michel Souza</a><br>
+<a href="https://www.linkedin.com/in/michel-ferreira-souza/" target="_blank">Michel Souza</a><br>
 
 ### Referências
 <a href="http://www.dba-oracle.com/t_linux_oracle_oraenv.htm" target="_blank">Linux oraenv Tips</a><br>
