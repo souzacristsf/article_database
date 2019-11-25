@@ -3,8 +3,8 @@
 ![](../img/RN_DB.png)
 
 # Alterando o nome do banco de dados Oracle (DBA)
-##### 24/11/2019 [Michel Souza](https://www.linkedin.com/in/michel-ferreira-souza/)
-
+##### Publicado em 24/11/2019 por [Michel Souza](https://www.linkedin.com/in/michel-ferreira-souza/)
+##### Atualizado em 25/11/2019
 
 Fala galera, neste post apresento como alterar o nome de um banco de dados Oracle. 
 Faz um tempo que planejo escrever artigos na área em que atuo e vejo que esse é o momento. Então, hoje darei início ao meu primeiro artigo e o intuito é apresentar algo que aplico no dia a dia, e também com o conhecimento que venho adquirindo com o estudo para a tão sonhada certificação.
@@ -195,6 +195,12 @@ SQL>  alter database open RESETLOGS;
 Conforme na imagem abaixo, nota-se que o arquivo de controlfile foi criado com sucesso e o banco aberto no modo read-write.
 ![](../img/open_database.png)
 
+>**Nota**: realizado a alteração do nome do banco de dados é necessario recriar o arquivo de senha *passwordfile*, atualizar os arquivos *tnsname.ora* e *listener.ora* com o nome do novo db_name.
+
+##### [Adicionado] - 25/11/2019
+Como mencionado no inicio do artigo, outra forma de alterar o nome do banco de dados é utilizando o utilitario DBNEWID.
+> A vantagem do uso do utilitario DBNEWID é a facilidade e segurança no processo de alteração do DB_NAME e DBID, proporcionando também o gerenciamento de backup de um novo DBID no catálogo do RMAN, [Franky Faust](https://www.linkedin.com/in/frankyweber/).
+
 E isso é tudo, espero que esse passo a passo ajude em algum momento. 
 
 Até o próximo artigo e vamos em frente!!!
@@ -208,3 +214,4 @@ Até o próximo artigo e vamos em frente!!!
 [create spfile from pfile tips](http://www.dba-oracle.com/concepts/pfile_spfile.htm) <br>
 [How to rename an Oracle database ORACLE_SID?](http://www.dba-oracle.com/t_rename_database_oracle_sid.htm) <br>
 [Command sed](https://linux.die.net/man/1/sed) <br>
+[DBNEWID Utility](https://docs.oracle.com/cd/E11882_01/server.112/e22490/dbnewid.htm#SUTIL014)
