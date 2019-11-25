@@ -5,14 +5,14 @@
 # Alterando o nome do banco de dados Oracle (DBA)
 
 Fala galera, neste post apresento como alterar o nome de um banco de dados Oracle. 
-Faz um tempo que planejo escrever artigos na área em que atuo e vejo que esse é o momento. Então, hoje darei inicio ao meu primeiro artigo e o intuito é apresentar algo que aplico no dia a dia, e também com o conhecimento que venho adquirindo com o estudo para a tão sonhada certificação.
+Faz um tempo que planejo escrever artigos na área em que atuo e vejo que esse é o momento. Então, hoje darei início ao meu primeiro artigo e o intuito é apresentar algo que aplico no dia a dia, e também com o conhecimento que venho adquirindo com o estudo para a tão sonhada certificação.
 > *"A melhor forma de aprender é ensinando ou compartilhando conhecimento"*
 
 Então, CHEGA de **blá blá blá** e vamos nessa Pequeno-Gafanhoto DBA. 
 Estou assumindo que você tem um contato com administração de banco de dados Oracle, por isso não vou me aprofundar em alguns comandos.
 
-## Cénario
-Vamos supor que sua empresa decidiu mudar o banco de dados(DBPROD) para a nuvem, ou o seu sysadmin fez a copia completa da VM (ambiente produtivo) e é necessario que o banco seja renomeado (DBTEST) para utilizarem como ambiente de teste. 
+## Cenário
+Vamos supor que sua empresa decidiu mudar o banco de dados (DBPROD) para a nuvem, ou o seu sysadmin fez a cópia completa da VM (ambiente produtivo) e é necessário que o banco seja renomeado (DBTEST) para utilizarem como ambiente de teste. 
 
 ## Iniciando
 Tem-se duas formas de alterar o nome de um banco de dados, 1) manual ou 2) com o utilitário nid (DBNEWID). Neste artigo irei abordar a forma manual.
@@ -27,7 +27,7 @@ SQL> select name, status, open_mode from v$database, v$instance;
 
 Nota-se que o banco atual é **DBPROD** com status aberto, modo archivelog e no modo leitura e escrita.
 
-Depois de indentificar a instância atual é necessario realizar o backup do controlfile utilizando o seguinte comando. 
+Depois de identificar a instância atual é necessário realizar o backup do controlfile utilizando o seguinte comando. 
 ```sql
 SQL> alter database backup controlfile to trace;
 Database altered.
@@ -48,7 +48,7 @@ TRACEFILE
 /orabin/app/oracle/diag/rdbms/dbprod/dbprod/trace/dbprod_ora_3937.trc
 
 ```
-Com a localicazação do arquivo de trace, criado no comando do backup controlfile, extrai-se o conteúdo do arquivo de controle para a criação com o novo nome do banco. O comando seguinte extrai o arquivo de controle necessario e salva o conteúdo no arquivo **new_controlfile.sql**.
+Com a localização do arquivo de trace, criado no comando do backup controlfile, extrai-se o conteúdo do arquivo de controle para a criação com o novo nome do banco. O comando seguinte extrai o arquivo de controle necessário e salva o conteúdo no arquivo **new_controlfile.sql**.
 ### Extraindo o controlfile do trace para ser recriado.
 ```sql
 sed -n '/CREATE.* RESETLOGS/,$p' teste.txt | \
@@ -60,24 +60,24 @@ sed 's/^ARCHIVELOG/NOARCHIVELOG/g'  > new_controlfile.sql
 ```
 Se atente para o comando */DBPROD/DBTEST/*, substitua pelos nomes que envolve a sua instância.
 
-Percebe-se que o comando modificou o arquivo de controle de **REUSE** para **SET**, usado para setar com o novo nome ```DBTEST``` e como esse banco será utilizado para ambiente de teste, faz-se a alteração do modo **ARCHIVELOG** para **NOARCHIVELOG**, pois não pretende-se recuperar o banco de dados em caso de falha. A imagem abaixo apresenta a saida do comando ```sed```.   
+Percebe-se que o comando modificou o arquivo de controle de **REUSE** para **SET**, usado para setar com o novo nome ```DBTEST``` e como esse banco será utilizado para ambiente de teste, faz-se a alteração do modo **ARCHIVELOG** para **NOARCHIVELOG**, pois não se pretende recuperar o banco de dados em caso de falha. A imagem abaixo apresenta a saida do comando ```sed```.   
 ![](../img/controlfile.png)
 > **Observação:** Nota-se o uso do comando *[sed](https://linux.die.net/man/1/sed)* que é um editor de textos não iterativo para manipulação de arquivos e streams do Unix/Linux, permiti substituir e “casar” padrões, utilizando Expressões Regulares. 
 
-Caso o banco de dados esteja em modo archivelog, conecte na instância e  utilize o próximo comando para gerar alguns logs. 
+Caso o banco de dados esteja em modo archivelog, conecte na instância e utilize o próximo comando para gerar alguns logs. 
 
 ```sql
 SQL> ALTER SYSTEM SWITCH LOGFILE;
 System altered.
 ```
 
-Se faz necessario a criação de um pfile a partir do spfile, utilize o comando abaixo para criar um pfile no diretório /tmp. Caso não esteja familiarizado com os arquivos de parâmetro para a inicialização da instância no Oracle, consulte [aqui](http://www.dba-oracle.com/concepts/pfile_spfile.htm).
+Se faz necessário a criação de um pfile a partir do spfile, utilize o comando abaixo para criar um pfile no diretório /tmp. Caso não esteja familiarizado com os arquivos de parâmetro para a inicialização da instância no Oracle, consulte [aqui](http://www.dba-oracle.com/concepts/pfile_spfile.htm).
 ```sql
 SQL> create pfile='/tmp/pfileProd.ora' from spfile;
 File created.
 
 ```
-Para realizar a alteração do nome do banco de dados é necessario encerrar *"shutdown"* o banco alvo. 
+Para realizar a alteração do nome do banco de dados é necessário  encerrar *"shutdown"* o banco alvo. 
 ```sql
 SQL> shut immediate;
 Database closed.
@@ -87,7 +87,7 @@ ORACLE instance shut down.
 ### Atualizando o arquivo **ORATAB**
 O arquivo ORATAB é utilizado pelo script ORAENV para definir automaticamente as variáveis de ambiente ORACLE_SID, ORACLE_HOME e PATH, entenda mais clicando [aqui](http://www.dba-oracle.com/t_linux_oracle_oraenv.htm). 
 Para atualizar o arquivo oratab, utilize o comando abaixo. 
-> **Observação:** Nota-se o uso da variável ORACLE_HOME, valor que já está setado para a instância dbprod. Caso queira pode subtituir o **${ORACLE_HOME}** com o resultado do comando ```echo $ORACLE_HOME```, ou edite o arquivo */etc/oratab* manualmente.
+> **Observação:** Nota-se o uso da variável ORACLE_HOME, valor que já está setado para a instância dbprod. Caso queira pode substituir o **${ORACLE_HOME}** com o resultado do comando ```echo $ORACLE_HOME```, ou edite o arquivo */etc/oratab* manualmente.
 ```bash
 cat >> /etc/oratab <<EOF
 dbtest:${ORACLE_HOME}:Y
@@ -117,7 +117,7 @@ rm /oradata/dbprod/control01.ctl
 rm /orabin/app/oracle/fast_recovery_area/dbprod/control02.ctl
 ```
 
-3. Criando novo diretório do controlfile e do parâmetros audit_file_dest.
+3. Criando novo diretório do controlfile e dos parâmetros do pfile.
 ```bash
 grep 'audit_file_dest\|control_files\|log_archive_dest_*' newPfile.ora
 
