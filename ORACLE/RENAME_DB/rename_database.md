@@ -210,6 +210,8 @@ Até o próximo artigo e vamos em frente!!!
 <a href="https://www.linkedin.com/in/michel-ferreira-souza/" target="_blank">Michel Souza</a><br>
 
 ### Referências
+[adjustable](http://google.com "Giiidd"){:target="_blank"}
+
 <a href="http://www.dba-oracle.com/t_linux_oracle_oraenv.htm" target="blank">Linux oraenv Tips</a><br>
 <a href="http://www.dba-oracle.com/t_linux_oracle_oraenv.htm" target="blank">Linux oraenv Tips</a><br>
 <a href="http://www.dba-oracle.com/concepts/pfile_spfile.htm" target="blank">create spfile from pfile tips</a><br>
