@@ -1,0 +1,1 @@
+Repositorio criado com o intuito de compartilhar conhecimento na área de banco de dados Oracle. 
