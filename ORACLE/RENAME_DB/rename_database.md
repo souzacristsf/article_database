@@ -210,9 +210,9 @@ Até o próximo artigo e vamos em frente!!!
 <a href="https://www.linkedin.com/in/michel-ferreira-souza/" target="_blank">Michel Souza</a><br>
 
 ### Referências
-<a href="http://www.dba-oracle.com/t_linux_oracle_oraenv.htm" target="_blank">Linux oraenv Tips</a><br>
-<a href="http://www.dba-oracle.com/t_linux_oracle_oraenv.htm" target="_blank">Linux oraenv Tips</a><br>
-<a href="http://www.dba-oracle.com/concepts/pfile_spfile.htm" target="_blank">create spfile from pfile tips</a><br>
+<a href="http://www.dba-oracle.com/t_linux_oracle_oraenv.htm" target="blank">Linux oraenv Tips</a><br>
+<a href="http://www.dba-oracle.com/t_linux_oracle_oraenv.htm" target="blank">Linux oraenv Tips</a><br>
+<a href="http://www.dba-oracle.com/concepts/pfile_spfile.htm" target="blank">create spfile from pfile tips</a><br>
 <a href="http://www.dba-oracle.com/t_rename_database_oracle_sid.htm" target="_blank">How to rename an Oracle database ORACLE_SID?</a><br>
 <a href="https://linux.die.net/man/1/sed" target="_blank">Command sed</a><br>
 <a href="https://docs.oracle.com/cd/E11882_01/server.112/e22490/dbnewid.htm#SUTIL014" target="_blank">DBNEWID Utility</a><br>
