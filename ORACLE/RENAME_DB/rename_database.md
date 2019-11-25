@@ -198,8 +198,8 @@ Conforme na imagem abaixo, nota-se que o arquivo de controlfile foi criado com s
 >**Nota**: realizado a alteração do nome do banco de dados é necessario recriar o arquivo de senha *passwordfile*, atualizar os arquivos *tnsname.ora* e *listener.ora* com o nome do novo db_name.
 
 ##### [Adicionado] - 25/11/2019
-Como mencionado no inicio do artigo, outra forma de alterar o nome do banco de dados é utilizando o utilitario DBNEWID.
-> A vantagem do uso do utilitario DBNEWID é a facilidade e segurança no processo de alteração do DB_NAME e DBID, proporcionando também o gerenciamento de backup de um novo DBID no catálogo do RMAN, [Franky Faust](https://www.linkedin.com/in/frankyweber/).
+Como mencionado no início do artigo, outra forma de alterar o nome do banco de dados é utilizando o utilitário DBNEWID.
+> A vantagem do uso do utilitário DBNEWID é a facilidade e segurança no processo de alteração do DB_NAME e DBID, proporcionando também o gerenciamento de backup de um novo DBID no catálogo do RMAN, [Franky Faust](https://www.linkedin.com/in/frankyweber/).
 
 E isso é tudo, espero que esse passo a passo ajude em algum momento. 
 
