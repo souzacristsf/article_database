@@ -5,7 +5,7 @@
 ##### Publicado em 08/12/2019 por [Michel Souza](https://www.linkedin.com/in/michel-ferreira-souza/)
 
 <p style="text-align: justify">
-Fala galera, neste post apresento como criar um banco de dados em modo silencioso com o DBCA via linha de comando.
+Fala galera, neste post apresento como criar um banco de dados em modo silencioso usando DBCA a partir de template modelo, com intuito de multiplexar o controlfile, redolog e achivelog no momento da criação do banco.
 </p>
 
 > *"A melhor forma de aprender é ensinando ou compartilhando conhecimento"*
