@@ -397,6 +397,7 @@ No comando abaixo, percebe-se a utilização de alguns parâmentros para a cria�
 + templateName - informa qual template modelo deve usar para criar o banco de dados
 + **totalMemory - caso utilize esse parâmetro, o valor informado irá seguir a seguinte regra, nesse post setamos com valor de 2048MB => Desse valor 75% vai para SGA e 25% PGA**. 
 + redoLogFileSize - informa o tamanho do redolog na criação do banco de dados, caso não informe o padrão é 50MB. <br>
+
 Comando para criar o banco de dados.
 ```bash
 ${ORACLE_HOME}/bin/dbca -silent -createDatabase      \
