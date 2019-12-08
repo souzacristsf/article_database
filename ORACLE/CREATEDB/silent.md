@@ -21,17 +21,15 @@ No Oracle 19c existem 3 modelos para a criação de um banco de dados, conforme 
 <img src="../img/my_template.png" alt="Italian Trulli"> <br>
 Nota-se a existência do template **My Custom Template** que foi criado para ser utilizado na criação do banco de dados **DBTESTE**. <br>
 O Oracle disponibiliza dois tipos de templates SEED e NONSEED que ficam armazenados no diretório **$ORACLE_HOME/assistants/dbca/templates** no format XML. Segue abaixo a diferença de cada template: 
-    <ol>
-    <li>SEED: para esse modelo o arquivo tem a extensão <font style='font-weight:bold;'>.dbc</font>, quando utilizamos esse modelo, tem-se o uso de um outro arquivo com a extensão <font style='font-weight:bold;'>.dfb</font> que incluie os arquivos de banco de dados. Nota-se que a criação do banco de dados usando SEEDS é mais rápida, pelo fato que os arquivos físicos já foram criados e só serão copiados para o local de destino, logo o banco de dados já está criado.</li>
-    <li>NONSEED: nesse modelo o arquivo tem a extensão <font style='font-weight:bold;'>.dbt</font>, e contém apenas as características do banco de dados a serem criadas, ou seja quando utilizado esse modelo é criado um novo banco de dados, bem como os arquivos de dados e executado alguns scripts. O uso desse modelo demanda um tempo para a criação do banco de dados.</li>
-    </ol>
++ SEED: para esse modelo o arquivo tem a extensão **.dbc**, quando utilizamos esse modelo, tem-se o uso de um outro arquivo com a extensão **.dfb** que incluie os arquivos de banco de dados. A criação do banco de dados usando SEEDS é mais rápida, pelo fato que os arquivos físicos já foram criados e só serão copiados para o local de destino, logo o banco de dados já está criado.
++ NONSEED: nesse modelo o arquivo tem a extensão **.dbt**, e contém apenas as características do banco de dados a serem criadas, ou seja quando utilizado esse modelo é criado um novo banco de dados, bem como os arquivos de dados e executado alguns scripts. O uso desse modelo demanda um tempo para a criação do banco de dados.
+
 Da mesma forma que é possível criar um banco de dados via interface gráfica e silent mode usando DBCA, é possível criar também um <a href="https://docs.oracle.com/cd/E17559_01/em.111/e16599/appdx_creating_db_templates.htm">template modelo</a>.
 
 # Criando um template modelo
-<p style="text-align: justify">
 Uma das vantagens da criação de uma template é poder definir um único modelo e reutilizá-lo para futuras implantações, facilitando o compartilhamento. No dia a dia de um DBA tem-se demanda de criação de uma ambiente de teste, treinamento e produção. Pode-se criar um modelo especifico para cada ambiente e ainda setar os parâmetros de memória ou outros de forma dinâmica. <br>
-Como informado anteriormente, criei um modelo my_custom_template.dbt e salvei no diretório <font style='font-weight:bold;'>$ORACLE_HOME/assistants/dbca/templates</font>, a estrutura XML é apresentada abaixo. 
-</p>
+Como informado anteriormente, criei um modelo my_custom_template.dbt e salvei no diretório **$ORACLE_HOME/assistants/dbca/templates**, a estrutura XML é apresentada abaixo. 
+
 
 ```xml
 <DatabaseTemplate name="My Custom Template" description="" version="19.0.0.0.0">
