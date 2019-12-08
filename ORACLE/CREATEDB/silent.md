@@ -30,7 +30,6 @@ Da mesma forma que é possível criar um banco de dados via interface gráfica e
 Uma das vantagens da criação de uma template é poder definir um único modelo e reutilizá-lo para futuras implantações, facilitando o compartilhamento. No dia a dia de um DBA tem-se demanda de criação de uma ambiente de teste, treinamento e produção. Pode-se criar um modelo especifico para cada ambiente e ainda setar os parâmetros de memória ou outros de forma dinâmica. <br>
 Como informado anteriormente, criei um modelo my_custom_template.dbt e salvei no diretório **$ORACLE_HOME/assistants/dbca/templates**, a estrutura XML é apresentada abaixo. 
 
-
 ```xml
 <DatabaseTemplate name="My Custom Template" description="" version="19.0.0.0.0">
    <CommonAttributes>
@@ -397,7 +396,8 @@ No comando abaixo, percebe-se a utilização de alguns parâmentros para a cria�
 + emConfiguration - informa se o banco de dados será configurado para utilizar Enterprise Manager ou não.
 + templateName - informa qual template modelo deve usar para criar o banco de dados
 + **totalMemory - caso utilize esse parâmetro, o valor informado irá seguir a seguinte regra, nesse post setamos com valor de 2048MB => Desse valor 75% vai para SGA e 25% PGA**. 
-+ redoLogFileSize - informa o tamanho do redolog na criação do banco de dados, caso não informe o padrão é 50MB.
++ redoLogFileSize - informa o tamanho do redolog na criação do banco de dados, caso não informe o padrão é 50MB. <br>
+Comando para criar o banco de dados.
 ```bash
 ${ORACLE_HOME}/bin/dbca -silent -createDatabase      \
   -templateName "my_custom_template.dbt"             \
