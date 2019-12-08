@@ -377,10 +377,10 @@ COMPATIBLE=19.0.0
 Crie um arquivo com o nome e destino em **/home/oracle/my_variable_dbca.txt** e execute no shell os comando abaixo. Nota-se que o DB_NAME será alimentado com o valor da variável criada no passo anterior. 
 > **Observação**: Monte a estrutura conforme sua necessidade. 
 ```bash
-echo "DEST_FRA=/u02/backup/fra/${DB_NAME}/"	>	/home/oracle/my_variable_dbca.txt
-echo "DEST_DATA=/u02/oradata/${DB_NAME}/"	>>  /home/oracle/my_variable_dbca.txt
-echo "DEST_REDO1=/u02/oradata/${DB_NAME}/"	>>  /home/oracle/my_variable_dbca.txt
-echo "DEST_REDO2=/u01/oradata/${DB_NAME}/"	>>  /home/oracle/my_variable_dbca.txt
+echo "DEST_FRA=/u02/backup/fra/${DB_NAME}/" >   /home/oracle/my_variable_dbca.txt
+echo "DEST_DATA=/u02/oradata/${DB_NAME}/"   >>  /home/oracle/my_variable_dbca.txt
+echo "DEST_REDO1=/u02/oradata/${DB_NAME}/"  >>  /home/oracle/my_variable_dbca.txt
+echo "DEST_REDO2=/u01/oradata/${DB_NAME}/"  >>  /home/oracle/my_variable_dbca.txt
 echo "ARCH_DEST1=/u02/archive/${DB_NAME}/"  >>  /home/oracle/my_variable_dbca.txt
 echo "ARCH_DEST2=/u01/archive/${DB_NAME}/"  >>  /home/oracle/my_variable_dbca.txt
 ```
