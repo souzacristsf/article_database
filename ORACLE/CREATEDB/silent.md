@@ -387,18 +387,20 @@ echo "ARCH_DEST2=/u01/archive/${DB_NAME}/"  >>  /home/oracle/my_variable_dbca.tx
 # Criando o banco de dados em silent mode
 Depois de realizar a criação do template e as variáveis, execute o comando abaixo no ```shell``` para criar o banco de dados DBTESTE.
 > **Observação:** é possível utilizar o argumento responseFile passando um arquivo com os parâmentros necessários para a criação do banco de dados. Veja um exemplo [aqui](https://oracle-base.com/articles/misc/database-configuration-assistant-dbca-silent-mode). 
-No comando abaixo, percebe-se a utilização de alguns parâmentros para a criação do banco de dados, irei detalhar alguns, mas caso queira conhecer outros parâmetros recomendo que leia [documentação](https://docs.oracle.com/en/database/oracle/oracle-database/19/admin/creating-and-configuring-an-oracle-database.html#GUID-0A94814D-032B-4F6A-8B54-A35223A1E3EF).
+No comando abaixo, percebe-se a utilização de alguns parâmentros para a criação do banco de dados, irei detalhar alguns, mas caso queira conhecer outros parâmetros recomendo que leia [documentação](https://docs.oracle.com/en/database/oracle/oracle-database/18/admin/creating-and-configuring-an-oracle-database.html#GUID-0A94814D-032B-4F6A-8B54-A35223A1E3EF).
 + silent - responsável por intruir o assintente de configuração do banco de dados para executar no modo silencioso
 + createDatabase - informa o DBCA para criar um novo banco de dados
 + sid - nome da instância do banco de dados
 + gdbname - informa o nome glocal do banco de dados
 + characterSet - conjunto de caracteres que o banco de dados estará utilizando
++ createAsContainerDatabase - se true para criar um CDB. informe false para criar um non-CDB. O valor padrão é false.
++ automaticMemoryManagement - caso informe true para utilizar AMM ou false para desativar.
 + emConfiguration - informa se o banco de dados será configurado para utilizar Enterprise Manager ou não.
 + templateName - informa qual template modelo deve usar para criar o banco de dados
 + **totalMemory - caso utilize esse parâmetro, o valor informado irá seguir a seguinte regra, nesse post setamos com valor de 2048MB => Desse valor 75% vai para SGA e 25% PGA**. 
 + redoLogFileSize - informa o tamanho do redolog na criação do banco de dados, caso não informe o padrão é 50MB. <br>
 
-Comando para criar o banco de dados.
+Sabe-se que não existe mais suporte para banco de dados em NON-CDB veja [aqui](https://docs.oracle.com/database/121/UPGRD/deprecated.htm#BABDBCJI), apenas para estudo o comando abaixo cria um banco de dados non-cdb.
 ```bash
 ${ORACLE_HOME}/bin/dbca -silent -createDatabase      \
   -templateName "my_custom_template.dbt"             \
