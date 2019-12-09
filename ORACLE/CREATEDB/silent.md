@@ -354,7 +354,7 @@ Antes de executar o comando para a criação do banco de dados é necessário cr
 + DEST_REDO2
 + DEST_DATA
 
-Crie as variáveis globais e locais abaixo no shell para serem utilizadas no template criado. 
+Crie as variáveis globais e locais abaixo no shell para serem utilizadas no comando para a criação do banco de dados. 
 ```bash
 export ORACLE_BASE=/u01/app/oracle
 export ORACLE_HOME=${ORACLE_BASE}/product/19.3.0/dbhome_1
