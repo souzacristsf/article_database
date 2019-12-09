@@ -19,7 +19,9 @@ Para acompanhar o teste será necessário fazer os itens abaixo.
 
 Segue o banco que utilizarei nesse teste como ambiente de produção. 
 ![](../img/my_pdb.png)
-> **Observação:** Caso queira mesmo treinar, hehehehe. Crie um novo banco de dados antes de ir para as próximas sessões. O comando abaixo cria um Container Database (CDB) o mesma utilizada nesse post. Não esquece de altera as variavéis ```ORACLE_HOME e DATA_DIR```.
+> **Observação:** Caso queira mesmo treinar, hehehehe. Crie um novo banco de dados antes de ir para as próximas sessões. O comando abaixo cria um Container Database (CDB) o mesma utilizada nesse post. Não esqueça de alterar as variavéis ```ORACLE_HOME e DATA_DIR```.
+
+Execute o comando abaixo para criar o banco de dados ```dbprod```.
 ```bash
 export ORACLE_HOME=/u01/app/oracle/product/19.3.0/dbhome_1
 ORACLE_SID=dbprod
@@ -56,7 +58,7 @@ Para realizar o teste o recrutador informa o acesso que normalmente é via SSH. 
 Sistema Operacional : Oracle Linux 7.6 64 Bits
 Database Version    : Oracle Enterprise 19C
 ```
-> **Observação**: o tempo para resolver o teste é de 2 horas. Faça o teste e tente reproduzir o mais próximo possível em seu ambiente de estudo.
+> **Observação**: o tempo para resolver o teste é de 2 horas. Faça o teste e tente reproduzir o mais próximo possível em seu ambiente de estudo. Não esqueça de documentar cada passo executado, isso é um ponto extra na apresentação da solução e para a vida de um DBA. hehehe
 
 > Sabe-se que não existe mais suporte para banco de dados em NON-CDB veja [aqui](https://docs.oracle.com/database/121/UPGRD/deprecated.htm#BABDBCJI), apenas para estudo o comando abaixo cria um banco de dados non-cdb.
 
