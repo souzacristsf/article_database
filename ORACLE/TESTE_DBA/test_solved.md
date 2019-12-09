@@ -179,11 +179,13 @@ Global Database Name:dbteste
 System Identifier(SID):dbteste
 Look at the log file "/u01/app/oracle/cfgtoollogs/dbca/dbteste/dbteste.log" for further details.
 ```
-**Muito bom!!!** já criamos o banco de dados, conforme se pede o teste, e no próximo post daremos continuidade nos outros itens. 
+**Muito bom!!!** já criamos o banco de dados, conforme se pede o teste, resolvemos o item **1** e **1.1** e no próximo post daremos continuidade nos outros itens. 
 
-E isso é tudo, espero que você esteja acompanhando também no seu ambiente de teste para aprendermos juntos. hahahaha
+Esse teste é para um cargo de DBA Júnior, Pleno ou Sênior ? Não sei, me responde ai nos comentários. 
 
-Até o próximo artigo e vamos em frente!!!
+E isso é tudo, espero que você esteja praticando também no seu ambiente de teste para aprendermos juntos. hahahaha
+
+Até o próximo artigo PARTE 2 e vamos em frente!!!
 
 #FocoForçaFé
 
