@@ -2,7 +2,7 @@
 ![](../img/teste_dba.png)
 
 # Resolvendo teste para vaga de (DBA) - PARTE 1
-##### Publicado em 08/12/2019 por [Michel Souza](https://www.linkedin.com/in/michel-ferreira-souza/)
+##### Publicado em 09/12/2019 por [Michel Souza](https://www.linkedin.com/in/michel-ferreira-souza/)
 
 <p style="text-align: justify">
 Fala galera, neste post apresento a resolução de um teste para vaga de emprego de DBA. Quem vê <del>cara</del> currículo não vê <del>coração</del> habilidades práticas. Teste prático é uma ótima saída para identificar habilidade de resolver problema no menor tempo possível, sendo possível avaliar qual a solução encontrada e como o indivíduo se sai trabalhando sobre pressão. Existem momentos que não importa o tempo gasto e sim qual foi a solução encontrada. 
