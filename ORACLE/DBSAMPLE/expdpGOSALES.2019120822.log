@@ -1,0 +1,270 @@
+;;; 
+Export: Release 19.0.0.0.0 - Production on Sun Dec 8 22:10:49 2019
+Version 19.3.0.0.0
+
+Copyright (c) 1982, 2019, Oracle and/or its affiliates.  All rights reserved.
+;;; 
+Connected to: Oracle Database 19c Enterprise Edition Release 19.0.0.0.0 - Production
+Starting "SYS"."SYS_EXPORT_FULL_01":  USERID="SYS/********@PDB1 AS SYSDBA" full=Y DIRECTORY=DUMP_GOSALES filesize=5120M DUMPFILE=PDB1.FULL%U.2019120822.dmp logfile=expdpGOSALES.2019120822.log 
+Processing object type DATABASE_EXPORT/EARLY_OPTIONS/VIEWS_AS_TABLES/TABLE_DATA
+Processing object type DATABASE_EXPORT/NORMAL_OPTIONS/TABLE_DATA
+Processing object type DATABASE_EXPORT/NORMAL_OPTIONS/VIEWS_AS_TABLES/TABLE_DATA
+Processing object type DATABASE_EXPORT/SCHEMA/TABLE/TABLE_DATA
+Processing object type DATABASE_EXPORT/SCHEMA/TABLE/STATISTICS/TABLE_STATISTICS
+Processing object type DATABASE_EXPORT/STATISTICS/MARKER
+Processing object type DATABASE_EXPORT/PRE_SYSTEM_IMPCALLOUT/MARKER
+Processing object type DATABASE_EXPORT/PRE_INSTANCE_IMPCALLOUT/MARKER
+Processing object type DATABASE_EXPORT/TABLESPACE
+Processing object type DATABASE_EXPORT/PROFILE
+Processing object type DATABASE_EXPORT/SCHEMA/USER
+Processing object type DATABASE_EXPORT/RADM_FPTM
+Processing object type DATABASE_EXPORT/GRANT/SYSTEM_GRANT/PROC_SYSTEM_GRANT
+Processing object type DATABASE_EXPORT/SCHEMA/GRANT/SYSTEM_GRANT
+Processing object type DATABASE_EXPORT/SCHEMA/ROLE_GRANT
+Processing object type DATABASE_EXPORT/SCHEMA/DEFAULT_ROLE
+Processing object type DATABASE_EXPORT/SCHEMA/ON_USER_GRANT
+Processing object type DATABASE_EXPORT/SCHEMA/TABLESPACE_QUOTA
+Processing object type DATABASE_EXPORT/RESOURCE_COST
+Processing object type DATABASE_EXPORT/TRUSTED_DB_LINK
+Processing object type DATABASE_EXPORT/DIRECTORY/DIRECTORY
+Processing object type DATABASE_EXPORT/SYSTEM_PROCOBJACT/PRE_SYSTEM_ACTIONS/PROCACT_SYSTEM
+Processing object type DATABASE_EXPORT/SYSTEM_PROCOBJACT/PROCOBJ
+Processing object type DATABASE_EXPORT/SYSTEM_PROCOBJACT/POST_SYSTEM_ACTIONS/PROCACT_SYSTEM
+Processing object type DATABASE_EXPORT/SCHEMA/PROCACT_SCHEMA
+Processing object type DATABASE_EXPORT/EARLY_OPTIONS/VIEWS_AS_TABLES/TABLE
+Processing object type DATABASE_EXPORT/EARLY_POST_INSTANCE_IMPCALLOUT/MARKER
+Processing object type DATABASE_EXPORT/NORMAL_OPTIONS/TABLE
+Processing object type DATABASE_EXPORT/NORMAL_OPTIONS/VIEWS_AS_TABLES/TABLE
+Processing object type DATABASE_EXPORT/NORMAL_POST_INSTANCE_IMPCALLOUT/MARKER
+Processing object type DATABASE_EXPORT/SCHEMA/TABLE/TABLE
+Processing object type DATABASE_EXPORT/FINAL_POST_INSTANCE_IMPCALLOUT/MARKER
+Processing object type DATABASE_EXPORT/AUDIT_UNIFIED/AUDIT_POLICY_ENABLE
+Processing object type DATABASE_EXPORT/POST_SYSTEM_IMPCALLOUT/MARKER
+. . exported "SYS"."KU$_USER_MAPPING_VIEW"               6.140 KB      41 rows
+. . exported "SYSTEM"."REDO_DB"                          25.59 KB       1 rows
+. . exported "WMSYS"."WM$WORKSPACES_TABLE$"              12.10 KB       1 rows
+. . exported "WMSYS"."WM$HINT_TABLE$"                    9.984 KB      97 rows
+. . exported "LBACSYS"."OLS$INSTALLATIONS"               6.960 KB       2 rows
+. . exported "WMSYS"."WM$WORKSPACE_PRIV_TABLE$"          7.078 KB      11 rows
+. . exported "SYS"."DAM_CONFIG_PARAM$"                   6.531 KB      14 rows
+. . exported "SYS"."TSDP_SUBPOL$"                        6.328 KB       1 rows
+. . exported "WMSYS"."WM$NEXTVER_TABLE$"                 6.375 KB       1 rows
+. . exported "LBACSYS"."OLS$PROPS"                       6.234 KB       5 rows
+. . exported "WMSYS"."WM$ENV_VARS$"                      6.015 KB       3 rows
+. . exported "SYS"."TSDP_PARAMETER$"                     5.953 KB       1 rows
+. . exported "SYS"."TSDP_POLICY$"                        5.921 KB       1 rows
+. . exported "WMSYS"."WM$VERSION_HIERARCHY_TABLE$"       5.984 KB       1 rows
+. . exported "WMSYS"."WM$EVENTS_INFO$"                   5.812 KB      12 rows
+. . exported "LBACSYS"."OLS$AUDIT_ACTIONS"               5.757 KB       8 rows
+. . exported "LBACSYS"."OLS$DIP_EVENTS"                  5.539 KB       2 rows
+. . exported "AUDSYS"."AUD$UNIFIED":"AUD_UNIFIED_P0"         0 KB       0 rows
+. . exported "AUDSYS"."AUD$UNIFIED":"SYS_P221"           113.5 KB     131 rows
+. . exported "LBACSYS"."OLS$AUDIT"                           0 KB       0 rows
+. . exported "LBACSYS"."OLS$COMPARTMENTS"                    0 KB       0 rows
+. . exported "LBACSYS"."OLS$DIP_DEBUG"                       0 KB       0 rows
+. . exported "LBACSYS"."OLS$GROUPS"                          0 KB       0 rows
+. . exported "LBACSYS"."OLS$LAB"                             0 KB       0 rows
+. . exported "LBACSYS"."OLS$LEVELS"                          0 KB       0 rows
+. . exported "LBACSYS"."OLS$POL"                             0 KB       0 rows
+. . exported "LBACSYS"."OLS$POLICY_ADMIN"                    0 KB       0 rows
+. . exported "LBACSYS"."OLS$POLS"                            0 KB       0 rows
+. . exported "LBACSYS"."OLS$POLT"                            0 KB       0 rows
+. . exported "LBACSYS"."OLS$PROFILE"                         0 KB       0 rows
+. . exported "LBACSYS"."OLS$PROFILES"                        0 KB       0 rows
+. . exported "LBACSYS"."OLS$PROG"                            0 KB       0 rows
+. . exported "LBACSYS"."OLS$SESSINFO"                        0 KB       0 rows
+. . exported "LBACSYS"."OLS$USER"                            0 KB       0 rows
+. . exported "LBACSYS"."OLS$USER_COMPARTMENTS"               0 KB       0 rows
+. . exported "LBACSYS"."OLS$USER_GROUPS"                     0 KB       0 rows
+. . exported "LBACSYS"."OLS$USER_LEVELS"                     0 KB       0 rows
+. . exported "SYS"."AUD$"                                    0 KB       0 rows
+. . exported "SYS"."DAM_CLEANUP_EVENTS$"                     0 KB       0 rows
+. . exported "SYS"."DAM_CLEANUP_JOBS$"                       0 KB       0 rows
+. . exported "SYS"."TSDP_ASSOCIATION$"                       0 KB       0 rows
+. . exported "SYS"."TSDP_CONDITION$"                         0 KB       0 rows
+. . exported "SYS"."TSDP_FEATURE_POLICY$"                    0 KB       0 rows
+. . exported "SYS"."TSDP_PROTECTION$"                        0 KB       0 rows
+. . exported "SYS"."TSDP_SENSITIVE_DATA$"                    0 KB       0 rows
+. . exported "SYS"."TSDP_SENSITIVE_TYPE$"                    0 KB       0 rows
+. . exported "SYS"."TSDP_SOURCE$"                            0 KB       0 rows
+. . exported "SYSTEM"."REDO_LOG"                             0 KB       0 rows
+. . exported "WMSYS"."WM$BATCH_COMPRESSIBLE_TABLES$"         0 KB       0 rows
+. . exported "WMSYS"."WM$CONSTRAINTS_TABLE$"                 0 KB       0 rows
+. . exported "WMSYS"."WM$CONS_COLUMNS$"                      0 KB       0 rows
+. . exported "WMSYS"."WM$LOCKROWS_INFO$"                     0 KB       0 rows
+. . exported "WMSYS"."WM$MODIFIED_TABLES$"                   0 KB       0 rows
+. . exported "WMSYS"."WM$MP_GRAPH_WORKSPACES_TABLE$"         0 KB       0 rows
+. . exported "WMSYS"."WM$MP_PARENT_WORKSPACES_TABLE$"        0 KB       0 rows
+. . exported "WMSYS"."WM$NESTED_COLUMNS_TABLE$"              0 KB       0 rows
+. . exported "WMSYS"."WM$RESOLVE_WORKSPACES_TABLE$"          0 KB       0 rows
+. . exported "WMSYS"."WM$RIC_LOCKING_TABLE$"                 0 KB       0 rows
+. . exported "WMSYS"."WM$RIC_TABLE$"                         0 KB       0 rows
+. . exported "WMSYS"."WM$RIC_TRIGGERS_TABLE$"                0 KB       0 rows
+. . exported "WMSYS"."WM$UDTRIG_DISPATCH_PROCS$"             0 KB       0 rows
+. . exported "WMSYS"."WM$UDTRIG_INFO$"                       0 KB       0 rows
+. . exported "WMSYS"."WM$VERSION_TABLE$"                     0 KB       0 rows
+. . exported "WMSYS"."WM$VT_ERRORS_TABLE$"                   0 KB       0 rows
+. . exported "WMSYS"."WM$WORKSPACE_SAVEPOINTS_TABLE$"        0 KB       0 rows
+. . exported "MDSYS"."RDF_PARAM$"                        6.515 KB       3 rows
+. . exported "SYS"."AUDTAB$TBS$FOR_EXPORT"               5.953 KB       2 rows
+. . exported "SYS"."DBA_SENSITIVE_DATA"                      0 KB       0 rows
+. . exported "SYS"."DBA_TSDP_POLICY_PROTECTION"              0 KB       0 rows
+. . exported "SYS"."FGA_LOG$FOR_EXPORT"                      0 KB       0 rows
+. . exported "SYS"."NACL$_ACE_EXP"                           0 KB       0 rows
+. . exported "SYS"."NACL$_HOST_EXP"                      6.914 KB       1 rows
+. . exported "SYS"."NACL$_WALLET_EXP"                        0 KB       0 rows
+. . exported "SYS"."SQL$TEXT_DATAPUMP"                       0 KB       0 rows
+. . exported "SYS"."SQL$_DATAPUMP"                           0 KB       0 rows
+. . exported "SYS"."SQLOBJ$AUXDATA_DATAPUMP"                 0 KB       0 rows
+. . exported "SYS"."SQLOBJ$DATA_DATAPUMP"                    0 KB       0 rows
+. . exported "SYS"."SQLOBJ$PLAN_DATAPUMP"                    0 KB       0 rows
+. . exported "SYS"."SQLOBJ$_DATAPUMP"                        0 KB       0 rows
+. . exported "SYSTEM"."SCHEDULER_JOB_ARGS"               8.648 KB       4 rows
+. . exported "SYSTEM"."SCHEDULER_PROGRAM_ARGS"           9.726 KB      13 rows
+. . exported "WMSYS"."WM$EXP_MAP"                        7.718 KB       3 rows
+. . exported "WMSYS"."WM$METADATA_MAP"                       0 KB       0 rows
+. . exported "GOSALES"."BRANCH"                          15.26 KB      29 rows
+. . exported "GOSALES"."CONVERSION_RATE"                 18.80 KB     624 rows
+. . exported "GOSALES"."COUNTRY"                          30.5 KB      21 rows
+. . exported "GOSALES"."CURRENCY_LOOKUP"                 30.28 KB      21 rows
+. . exported "GOSALES"."EURO_CONVERSION"                 6.671 KB       8 rows
+. . exported "GOSALES"."INVENTORY_LEVELS"                2.170 MB   53837 rows
+. . exported "GOSALES"."ORDER_DETAILS"                   19.39 MB  446023 rows
+. . exported "GOSALES"."ORDER_HEADER"                    5.532 MB   53256 rows
+. . exported "GOSALES"."ORDER_METHOD"                    20.83 KB       7 rows
+. . exported "GOSALES"."PRODUCT"                         26.70 KB     274 rows
+. . exported "GOSALES"."PRODUCT_BRAND"                   30.20 KB      28 rows
+. . exported "GOSALES"."PRODUCT_COLOR_LOOKUP"            28.93 KB      27 rows
+. . exported "GOSALES"."PRODUCT_FORECAST"                3.621 MB  129096 rows
+. . exported "GOSALES"."PRODUCT_LINE"                    22.83 KB       5 rows
+. . exported "GOSALES"."PRODUCT_NAME_LOOKUP"             2.135 MB    7946 rows
+. . exported "GOSALES"."PRODUCT_SIZE_LOOKUP"             41.83 KB      55 rows
+. . exported "GOSALES"."PRODUCT_TYPE"                    30.75 KB      21 rows
+. . exported "GOSALES"."RETURNED_ITEM"                   293.3 KB   10249 rows
+. . exported "GOSALES"."RETURN_REASON"                   23.39 KB       5 rows
+. . exported "GOSALES"."SALES_REGION"                    21.40 KB       5 rows
+. . exported "GOSALES"."SALES_TARGET"                    15.67 MB  233625 rows
+. . exported "GOSALES"."TIME_DIMENSION"                  1.218 MB    1465 rows
+. . exported "GOSALES"."TIME_QUARTER_LOOKUP"             24.51 KB      20 rows
+. . exported "GOSALES"."XGOREV"                          19.14 KB      32 rows
+. . exported "GOSALESDW"."AGGR_TIME_PROD_OM_FACT"        72.92 KB    1867 rows
+. . exported "GOSALESDW"."BURST_TABLE"                   5.664 KB       3 rows
+. . exported "GOSALESDW"."BURST_TABLE2"                  6.429 KB       4 rows
+. . exported "GOSALESDW"."DIST_INVENTORY_FACT"           2.379 MB   53837 rows
+. . exported "GOSALESDW"."DIST_PRODUCT_FORECAST_FACT"    4.114 MB  129096 rows
+. . exported "GOSALESDW"."DIST_RETURNED_ITEMS_FACT"      492.1 KB   10249 rows
+. . exported "GOSALESDW"."DIST_RETURN_REASON_DIM"        23.91 KB       5 rows
+. . exported "GOSALESDW"."EMP_EMPLOYEE_DIM"              804.3 KB     972 rows
+. . exported "GOSALESDW"."EMP_EXPENSE_FACT"              4.918 MB  127984 rows
+. . exported "GOSALESDW"."EMP_EXPENSE_PLAN_FACT"         1009. KB   30150 rows
+. . exported "GOSALESDW"."EMP_EXPENSE_TYPE_DIM"          83.27 KB      39 rows
+. . exported "GOSALESDW"."EMP_EXPENSE_UNIT_LOOKUP"       19.33 KB       3 rows
+. . exported "GOSALESDW"."EMP_POSITION_DIM"              11.47 KB      57 rows
+. . exported "GOSALESDW"."EMP_POSITION_LOOKUP"           79.19 KB      57 rows
+. . exported "GOSALESDW"."EMP_POSITION_SUMMARY_FACT"     477.2 KB   15050 rows
+. . exported "GOSALESDW"."EMP_RANKING_DIM"               20.88 KB       5 rows
+. . exported "GOSALESDW"."EMP_RANKING_FACT"              64.87 KB    1897 rows
+. . exported "GOSALESDW"."EMP_RECRUITMENT_DIM"           56.02 KB      14 rows
+. . exported "GOSALESDW"."EMP_RECRUITMENT_FACT"          30.63 KB     416 rows
+. . exported "GOSALESDW"."EMP_RECRUITMENT_LEAD_FACT"     133.7 KB    4171 rows
+. . exported "GOSALESDW"."EMP_SUCCESSION_FACT"           16.67 KB     181 rows
+. . exported "GOSALESDW"."EMP_SUCCESSION_STATUS_DIM"     21.71 KB       5 rows
+. . exported "GOSALESDW"."EMP_SUMMARY_FACT"              916.2 KB   24233 rows
+. . exported "GOSALESDW"."EMP_SURVEY_FACT"               189.0 KB    5725 rows
+. . exported "GOSALESDW"."EMP_SURVEY_TARG_FACT"          6.937 KB      20 rows
+. . exported "GOSALESDW"."EMP_SURVEY_TOPIC_DIM"          23.21 KB       5 rows
+. . exported "GOSALESDW"."EMP_TERMINATION_LOOKUP"        22.45 KB       6 rows
+. . exported "GOSALESDW"."EMP_TRAINING_DIM"              67.28 KB      42 rows
+. . exported "GOSALESDW"."EMP_TRAINING_FACT"             179.7 KB    4465 rows
+. . exported "GOSALESDW"."FIN_ACCOUNT_CLASS_LOOKUP"      22.97 KB       5 rows
+. . exported "GOSALESDW"."FIN_ACCOUNT_DIM"               86.52 KB     242 rows
+. . exported "GOSALESDW"."FIN_ACCOUNT_NAME_LOOKUP"       425.8 KB     242 rows
+. . exported "GOSALESDW"."FIN_ACCOUNT_TYPE_LOOKUP"       25.16 KB       4 rows
+. . exported "GOSALESDW"."FIN_FINANCE_FACT"              5.233 MB  164132 rows
+. . exported "GOSALESDW"."FIN_SUBM_CURRENCY_LOOKUP"      24.59 KB       7 rows
+. . exported "GOSALESDW"."FIN_SUBM_DIM"                  133.8 KB      52 rows
+. . exported "GOSALESDW"."FIN_SUBM_TYPE_LOOKUP"          20.47 KB       3 rows
+. . exported "GOSALESDW"."GO_BRANCH_DIM"                 15.21 KB      29 rows
+. . exported "GOSALESDW"."GO_GENDER_LOOKUP"              18.39 KB       2 rows
+. . exported "GOSALESDW"."GO_ORG_DIM"                    18.13 KB     123 rows
+. . exported "GOSALESDW"."GO_ORG_NAME_LOOKUP"            165.0 KB     123 rows
+. . exported "GOSALESDW"."GO_REGION_DIM"                 58.49 KB      21 rows
+. . exported "GOSALESDW"."GO_SATISFACTION_DIM"           23.55 KB       5 rows
+. . exported "GOSALESDW"."GO_TIME_DIM"                   1.218 MB    1465 rows
+. . exported "GOSALESDW"."GO_TIME_QUARTER_LOOKUP"        24.51 KB      20 rows
+. . exported "GOSALESDW"."MRK_ACTIVITY_STATUS_DIM"       19.34 KB       2 rows
+. . exported "GOSALESDW"."MRK_ADV_FACT"                  30.83 KB     576 rows
+. . exported "GOSALESDW"."MRK_BUNDLE_GROUP_LOOKUP"       32.20 KB      15 rows
+. . exported "GOSALESDW"."MRK_CAMPAIGN_LOOKUP"           29.66 KB      12 rows
+. . exported "GOSALESDW"."MRK_PRODUCT_SURVEY_DIM"        23.17 KB       7 rows
+. . exported "GOSALESDW"."MRK_PRODUCT_SURVEY_FACT"       5.760 MB  165074 rows
+. . exported "GOSALESDW"."MRK_PROD_SURVEY_TARG_FACT"     131.4 KB    5824 rows
+. . exported "GOSALESDW"."MRK_PROMOTION_DIM"             181.0 KB     112 rows
+. . exported "GOSALESDW"."MRK_PROMOTION_FACT"            782.5 KB   11034 rows
+. . exported "GOSALESDW"."MRK_PROMOTION_PLAN_FACT"       453.3 KB    8652 rows
+. . exported "GOSALESDW"."MRK_RTL_SURVEY_DIM"            27.22 KB       9 rows
+. . exported "GOSALESDW"."MRK_RTL_SURVEY_FACT"           764.1 KB   22508 rows
+. . exported "GOSALESDW"."MRK_RTL_SURVEY_TARG_FACT"      7.734 KB      64 rows
+. . exported "GOSALESDW"."SLS_ORDER_METHOD_DIM"          21.35 KB       7 rows
+. . exported "GOSALESDW"."SLS_PRODUCT_BRAND_LOOKUP"      30.21 KB      28 rows
+. . exported "GOSALESDW"."SLS_PRODUCT_COLOR_LOOKUP"      28.93 KB      27 rows
+. . exported "GOSALESDW"."SLS_PRODUCT_DIM"               34.38 KB     274 rows
+. . exported "GOSALESDW"."SLS_PRODUCT_LINE_LOOKUP"       22.84 KB       5 rows
+. . exported "GOSALESDW"."SLS_PRODUCT_LOOKUP"            2.134 MB    7946 rows
+. . exported "GOSALESDW"."SLS_PRODUCT_SIZE_LOOKUP"       41.83 KB      55 rows
+. . exported "GOSALESDW"."SLS_PRODUCT_TYPE_LOOKUP"       30.19 KB      21 rows
+. . exported "GOSALESDW"."SLS_RTL_DIM"                   1.929 MB     847 rows
+. . exported "GOSALESDW"."SLS_SALES_FACT"                36.78 MB  446023 rows
+. . exported "GOSALESDW"."SLS_SALES_ORDER_DIM"           9.776 MB  446023 rows
+. . exported "GOSALESDW"."SLS_SALES_TARG_FACT"           8.569 MB  233625 rows
+. . exported "GOSALESDW"."XGOREVDW"                      26.52 KB      58 rows
+. . exported "GOSALESHR"."DEPARTMENT_LOOKUP"             26.90 KB      12 rows
+. . exported "GOSALESHR"."EMPLOYEE"                      161.6 KB     766 rows
+. . exported "GOSALESHR"."EMPLOYEE_EXPENSE_DETAIL"       5.407 MB  127997 rows
+. . exported "GOSALESHR"."EMPLOYEE_EXPENSE_PLAN"         934.3 KB   37317 rows
+. . exported "GOSALESHR"."EMPLOYEE_HISTORY"                115 KB     972 rows
+. . exported "GOSALESHR"."EMPLOYEE_SUMMARY"              749.8 KB   24233 rows
+. . exported "GOSALESHR"."EMPLOYEE_SURVEY_RESULTS"       196.0 KB    5725 rows
+. . exported "GOSALESHR"."EMPLOYEE_SURVEY_TARGETS"       7.445 KB      20 rows
+. . exported "GOSALESHR"."EMPLOYEE_SURVEY_TOPIC"         22.71 KB       5 rows
+. . exported "GOSALESHR"."EXPENSE_GROUP"                 23.85 KB      10 rows
+. . exported "GOSALESHR"."EXPENSE_TYPE"                  53.62 KB      39 rows
+. . exported "GOSALESHR"."EXPENSE_UNIT"                  19.32 KB       3 rows
+. . exported "GOSALESHR"."GENDER_LOOKUP"                 18.39 KB       2 rows
+. . exported "GOSALESHR"."ORGANIZATION"                  167.1 KB     123 rows
+. . exported "GOSALESHR"."POSITION_DEPARTMENT"           8.507 KB      45 rows
+. . exported "GOSALESHR"."POSITION_LOOKUP"               70.16 KB      45 rows
+. . exported "GOSALESHR"."POSITION_SUMMARY"              556.1 KB   15050 rows
+. . exported "GOSALESHR"."RANKING"                       20.36 KB       5 rows
+. . exported "GOSALESHR"."RANKING_RESULTS"               50.94 KB    1898 rows
+. . exported "GOSALESHR"."RECRUITMENT"                   28.15 KB     416 rows
+. . exported "GOSALESHR"."RECRUITMENT_MEDIUM"            31.48 KB      14 rows
+. . exported "GOSALESHR"."RECRUITMENT_TYPE"              22.96 KB       7 rows
+. . exported "GOSALESHR"."SATISFACTION_INDEX"            23.06 KB       5 rows
+. . exported "GOSALESHR"."SUCCESSION_DETAILS"            14.96 KB     182 rows
+. . exported "GOSALESHR"."SUCCESSOR_STATUS"              21.19 KB       5 rows
+. . exported "GOSALESHR"."TERMINATION_LOOKUP"            22.44 KB       6 rows
+. . exported "GOSALESHR"."TRAINING"                      66.60 KB      42 rows
+. . exported "GOSALESHR"."TRAINING_DETAILS"              115.6 KB    4471 rows
+. . exported "GOSALESMR"."PRODUCT_SURVEY_RESULTS"        6.378 MB  165074 rows
+. . exported "GOSALESMR"."PRODUCT_SURVEY_TARGETS"        137.1 KB    5824 rows
+. . exported "GOSALESMR"."PRODUCT_SURVEY_TOPIC"          22.66 KB       7 rows
+. . exported "GOSALESMR"."PROMOTIONS"                    180.1 KB     112 rows
+. . exported "GOSALESMR"."PROMOTION_BUNDLE_GROUP"        32.20 KB      15 rows
+. . exported "GOSALESMR"."PROMOTION_CAMPAIGN"            29.66 KB      12 rows
+. . exported "GOSALESMR"."PROMOTION_PLAN"                494.7 KB    8652 rows
+. . exported "GOSALESMR"."RETAILER_SURVEY_RESULTS"       880.4 KB   22508 rows
+. . exported "GOSALESMR"."RETAILER_SURVEY_TARGETS"       8.343 KB      64 rows
+. . exported "GOSALESMR"."RETAILER_SURVEY_TOPIC"         26.70 KB       9 rows
+. . exported "GOSALESRT"."ACTIVITY_STATUS_LOOKUP"        18.85 KB       2 rows
+. . exported "GOSALESRT"."RETAILER"                      52.26 KB     562 rows
+. . exported "GOSALESRT"."RETAILER_ACTIVITY"             370.1 KB   17754 rows
+. . exported "GOSALESRT"."RETAILER_CONTACT"              948.7 KB     847 rows
+. . exported "GOSALESRT"."RETAILER_SITE"                 100.1 KB     847 rows
+. . exported "GOSALESRT"."RETAILER_SITE_MB"              94.67 KB     847 rows
+. . exported "GOSALESRT"."RETAILER_TYPE"                 24.88 KB       8 rows
+Master table "SYS"."SYS_EXPORT_FULL_01" successfully loaded/unloaded
+******************************************************************************
+Dump file set for SYS.SYS_EXPORT_FULL_01 is:
+  /u02/bkplogico/PDB1.FULL01.2019120822.dmp
+Job "SYS"."SYS_EXPORT_FULL_01" successfully completed at Sun Dec 8 22:17:14 2019 elapsed 0 00:06:23
