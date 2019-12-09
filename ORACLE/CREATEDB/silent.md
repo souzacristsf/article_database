@@ -438,6 +438,8 @@ Para deletar um banco de dados em modo silencioso é necessário informar a senh
 dbca -silent -deleteDatabase -sourceDB dbteste -sysDBAUserName sys -sysDBAPassword Manager19cTST
 ```
 
+>**Nota**: realizado a criação do nome do banco de dados, certifique que os arquivos *tnsname.ora* e *listener.ora* estão de acordo ou atualize-os com a nova instância.
+
 E isso é tudo, espero que esse artigo ajude em algum momento. 
 
 Até o próximo artigo e vamos em frente!!!
