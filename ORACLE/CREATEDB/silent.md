@@ -121,6 +121,7 @@ Como informado anteriormente, criei um modelo my_custom_template.dbt e salvei no
          <autoExtend>true</autoExtend>
          <increment unit="KB">4096</increment>
          <maxSize unit="MB">2048</maxSize>
+         <logging>true</logging>
       </DatafileAttributes>
 	  <DatafileAttributes id="{DEST_DATA}/teste_data02.dbf">
          <tablespace>TBS_TESTE</tablespace>
