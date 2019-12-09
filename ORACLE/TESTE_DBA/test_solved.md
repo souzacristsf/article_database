@@ -15,7 +15,7 @@ Fala galera, neste post apresento a resolução de um teste para vaga de emprego
 # Requisitos para o teste
 Para acompanhar o teste será necessário fazer os itens abaixo. 
 1. criar um banco de dados ```dbprod```, caso já tenha um ambiente pule para o item 2. 
-2. importar a base de dados da [IBM Cognos Analytics](https://www.ibm.com/support/knowledgecenter/en/SSEP7J_11.1.0/com.ibm.swg.ba.cognos.cbi.doc/welcome.html), leia a [documentação](https://www.ibm.com/support/knowledgecenter/en/SSEP7J_11.1.0/com.ibm.swg.ba.cognos.ig_smples.doc/c_asg_restore_scripts_oracle.html) para o restore da base de exemplo. Caso queira disponibilizei um dump [aqui](../DBSAMPLE/READE.md) é só baixar e importar, veja o log e res.
+2. importar a base de dados da [IBM Cognos Analytics](https://www.ibm.com/support/knowledgecenter/en/SSEP7J_11.1.0/com.ibm.swg.ba.cognos.cbi.doc/welcome.html), leia a [documentação](https://www.ibm.com/support/knowledgecenter/en/SSEP7J_11.1.0/com.ibm.swg.ba.cognos.ig_smples.doc/c_asg_restore_scripts_oracle.html) para o restore da base de exemplo. Caso queira, disponibilizei um dump [aqui](../DBSAMPLE/) é só baixar e importar, veja o log e res.
 
 Segue o banco que utilizarei nesse teste como ambiente de produção. 
 ![](../img/my_pdb.png)
