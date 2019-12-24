@@ -9,7 +9,7 @@ Quem vê <del>cara</del> currículo não vê <del>coração</del> habilidades pr
 
 > *"A melhor forma de aprender é ensinando ou compartilhando conhecimento."*
 
-> **Observação**: o objetivo deste post não é apresentar o gabarito de um teste, mas sim compartilhar conhecimento, apresentando um pouco do dia a dia de um DBA e o que as empresas esperam inicialmente dos candidatos. 
+> **Observação**: o objetivo deste post não é apresentar o gabarito de um teste, mas sim compartilhar conhecimento, apresentando um pouco do dia a dia de um DBA e o que as empresas esperam inicialmente dos candidatos.   
 
 # Teste Prático DBA Oracle
 Para realizar o teste o recrutador informa o acesso que normalmente é via SSH. Abaixo segue o ambiente utilizado para realizar o teste.
