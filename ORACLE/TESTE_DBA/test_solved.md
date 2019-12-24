@@ -94,14 +94,14 @@ Database Version    : Oracle Enterprise 19C
               </tr>
             </table>
           </ul> <br>
-          <ul>1.2 Multiplexar os Redolog criando 5 x 100 MB on Diskgroup "+DATA" ou filesystem local.
+          <ul>1.2 Multiplexar os Redolog criando 3 x 100MB e controlfile on Diskgroup "+DATA" ou filesystem local.
           </ul> <br>
           <ul>1.3 Crie uma Tablespace BIGFILE GOSALES_TS com 10 GB autoextend com 256M e extent management local autoallocate.</ul><br>
           <ul>1.4 Gerar um Dump FULL do PDB1 da instância ```dbprod``` e armazenar o dump no diretorio em '/u01/datapump/dbprod/FULL.PDB1.dmp'.</ul><br>
           <ul>1.5 Importe o Schema GOSALESDW e aplique todos os grants existentes na base origem.</ul><br>
           <ul>1.6 Colocar o banco em Modo Archivelog</ul><br>
-          <ul>1.7 Execute um Backup RMAN Full da instância ```dbprod```.</ul><br>
-          <ul>1.8 Importar a tabela EMP_RANKING_DIM com nome EMP_RANKING_DIM_BKP, no schema GOSALESDW em uma nova tablespace chamada TABLERECO.<ul>
+          <ul>1.7 Execute um Backup RMAN Full da instância dbprod.</ul><br>
+          <ul>1.8 Importar a tabela EMP_RANKING_DIM com nome EMP_RANKING_DIM_BKP, no schema GOSALESDW em uma nova tablespace chamada GOSALES_TSRECO.<ul>
         </ol>
 
 2. Clone Database <br>
