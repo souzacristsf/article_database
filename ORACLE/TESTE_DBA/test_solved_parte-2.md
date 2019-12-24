@@ -1,6 +1,7 @@
 
 
 <img src="../img/teste_dba_2.png" alt="" width="80%">
+<img src="../img/teste_dba_2.png" alt="" style="max-width:80%;">
 
 # Resolvendo teste para vaga de (DBA) - PARTE 2
 ##### Publicado em 24/12/2019 por [Michel Souza](https://www.linkedin.com/in/michel-ferreira-souza/)
