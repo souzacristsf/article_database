@@ -64,7 +64,7 @@ Database Version    : Oracle Enterprise 19C
     2.2 Configure as áreas de Memória Manualmente
 
 # Solução 
-## Criando tablespace BIGFILE
+## Realizando a importação Schema GOSALESDW 
 Resposta **1.5**) Antes de iniciarmos a importação Schema **GOSALESDW** na instância DBTESTE, se atente primeiramente com as observações abaixo.
 > **Observação**: Antes de qualquer carga ou restore verifique o tamanho que será ocupado em disco para que no meio do processo o mesmo não venha falhar.
 
