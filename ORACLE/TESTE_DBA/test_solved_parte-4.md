@@ -60,7 +60,7 @@ Database Version    : Oracle Enterprise 19C
         </ol>
 
 2. Clone Database <br>
-    2.1 Crie uma nova isntância DBTREINA a partir do RMAN FULL da base DBTESTE <br>
+    2.1 Crie uma nova instância DBTREINA a partir do RMAN FULL da base DBTESTE <br>
     2.2 Configure as áreas de Memória Manualmente
 
 # Solução 
@@ -323,7 +323,7 @@ Conteúdo do script *BkpRmanFull.sh*:<br>
 export ORACLE_BASE=/u01/app/oracle
 export ORACLE_HOME=$ORACLE_BASE/product/19.3.0.0/dbhome_1
 export PATH=/usr/sbin:$PATH:/sbin:$ORACLE_HOME/bin
-export ORACLE_SID=cdbprd
+export ORACLE_SID=dbteste
 export DIR_BASE=/u02/backup/${ORACLE_SID}/fisico 
 # Destino do log do backup
 export DIR_LOG=$DIR_BASE/logs
@@ -363,19 +363,20 @@ Iniciando o processo de backup em background com o comando abaixo.
 nohup sh /u02/script/BkpRmanFull.sh &
 
 # verificando o log do backup full, temos as seguintes informações
-[oracle@lab-ol8-19c => (cdbprd) logs]$ tail -2000f BackupFull_cdbprd_12012020_0027.log
-Sun Jan 12 00:27:02 -04 2020 => Inicio do backup rman ...
+[oracle@lab-ol8-19c => (dbteste) logs]$ tail -2000f BackupFull_dbteste_12012020_0027.log
 
-Recovery Manager: Release 19.0.0.0.0 - Production on Sun Jan 12 00:27:02 2020
+Sat Jan 25 15:39:52 -04 2020 => Inicio do backup rman ...
+
+Recovery Manager: Release 19.0.0.0.0 - Production on Sat Jan 25 15:39:53 2020
 Version 19.3.0.0.0
 
 Copyright (c) 1982, 2019, Oracle and/or its affiliates.  All rights reserved.
 
-connected to target database: CDBPRD (DBID=1047786992)
+connected to target database: DBTESTE (DBID=938280311)
 
 RMAN>
 using target database control file instead of recovery catalog
-RMAN configuration parameters for database with db_unique_name CDBPRD are:
+RMAN configuration parameters for database with db_unique_name DBTESTE are:
 CONFIGURE RETENTION POLICY TO REDUNDANCY 1; # default
 CONFIGURE BACKUP OPTIMIZATION OFF; # default
 CONFIGURE DEFAULT DEVICE TYPE TO DISK; # default
@@ -390,126 +391,120 @@ CONFIGURE ENCRYPTION ALGORITHM 'AES128'; # default
 CONFIGURE COMPRESSION ALGORITHM 'BASIC' AS OF RELEASE 'DEFAULT' OPTIMIZE FOR LOAD TRUE ; # default
 CONFIGURE RMAN OUTPUT TO KEEP FOR 7 DAYS; # default
 CONFIGURE ARCHIVELOG DELETION POLICY TO NONE; # default
-CONFIGURE SNAPSHOT CONTROLFILE NAME TO '/u01/app/oracle/product/19.3.0.0/dbhome_1/dbs/snapcf_cdbprd.f'; # default
+CONFIGURE SNAPSHOT CONTROLFILE NAME TO '/u01/app/oracle/product/19.3.0.0/dbhome_1/dbs/snapcf_dbteste.f'; # default
 
 RMAN> 2> 3> 4> 5> 6> 7> 8> 9> 10> 11> 12> 13> 14> 15>
 allocated channel: d1
-channel d1: SID=74 device type=DISK
+channel d1: SID=69 device type=DISK
 
-Starting backup at 12/01/2020 00:27:11
+Starting backup at 25/01/2020 15:40:09
 channel d1: starting compressed full datafile backup set
 channel d1: specifying datafile(s) in backup set
-input datafile file number=00001 name=/u01/oradata/cdbprd/system01.dbf
-input datafile file number=00003 name=/u01/oradata/cdbprd/sysaux01.dbf
-input datafile file number=00004 name=/u01/oradata/cdbprd/undotbs01.dbf
-input datafile file number=00007 name=/u01/oradata/cdbprd/users01.dbf
-channel d1: starting piece 1 at 12/01/2020 00:27:12
-channel d1: finished piece 1 at 12/01/2020 00:30:27
-piece handle=/u02/backup/cdbprd/fisico/files/df_CDBPRD_13_1_1029457631.dbf tag=BKPDBFULL comment=NONE
-channel d1: backup set complete, elapsed time: 00:03:15
-channel d1: starting compressed full datafile backup set
-channel d1: specifying datafile(s) in backup set
-input datafile file number=00013 name=/u01/app/oracle/product/19.3.0.0/dbhome_1/dbs/GOSALES_TS.ora
-input datafile file number=00010 name=/u01/oradata/cdbprd/dbprod/sysaux01.dbf
-input datafile file number=00009 name=/u01/oradata/cdbprd/dbprod/system01.dbf
-input datafile file number=00011 name=/u01/oradata/cdbprd/dbprod/undotbs01.dbf
-input datafile file number=00012 name=/u01/oradata/cdbprd/dbprod/users01.dbf
-channel d1: starting piece 1 at 12/01/2020 00:30:28
-channel d1: finished piece 1 at 12/01/2020 00:32:03
-piece handle=/u02/backup/cdbprd/fisico/files/df_CDBPRD_14_1_1029457828.dbf tag=BKPDBFULL comment=NONE
-channel d1: backup set complete, elapsed time: 00:01:35
-channel d1: starting compressed full datafile backup set
-channel d1: specifying datafile(s) in backup set
-input datafile file number=00006 name=/u01/oradata/cdbprd/pdbseed/sysaux01.dbf
-input datafile file number=00005 name=/u01/oradata/cdbprd/pdbseed/system01.dbf
-input datafile file number=00008 name=/u01/oradata/cdbprd/pdbseed/undotbs01.dbf
-channel d1: starting piece 1 at 12/01/2020 00:32:04
-channel d1: finished piece 1 at 12/01/2020 00:33:29
-piece handle=/u02/backup/cdbprd/fisico/files/df_CDBPRD_15_1_1029457924.dbf tag=BKPDBFULL comment=NONE
-channel d1: backup set complete, elapsed time: 00:01:25
-Finished backup at 12/01/2020 00:33:29
+input datafile file number=00005 name=/u01/oradata/dbteste/gosales_data01.dbf
+input datafile file number=00001 name=/u01/oradata/dbteste/system01.dbf
+input datafile file number=00003 name=/u01/oradata/dbteste/sysaux01.dbf
+input datafile file number=00004 name=/u01/oradata/dbteste/undotbs01.dbf
+input datafile file number=00002 name=/u01/oradata/dbteste/gosalesreco_data01.dbf
+input datafile file number=00007 name=/u01/oradata/dbteste/users01.dbf
+channel d1: starting piece 1 at 25/01/2020 15:40:11
+channel d1: finished piece 1 at 25/01/2020 15:43:58
+piece handle=/u02/backup/dbteste/fisico/files/df_DBTESTE_6_1_1030635610.dbf tag=BKPDBFULL comment=NONE
+channel d1: backup set complete, elapsed time: 00:03:48
+Finished backup at 25/01/2020 15:43:59
 
-Starting Control File and SPFILE Autobackup at 12/01/2020 00:33:30
-piece handle=/u01/app/oracle/product/19.3.0.0/dbhome_1/dbs/c-1047786992-20200112-00 comment=NONE
-Finished Control File and SPFILE Autobackup at 12/01/2020 00:33:38
+Starting Control File and SPFILE Autobackup at 25/01/2020 15:44:00
+piece handle=/u01/app/oracle/product/19.3.0.0/dbhome_1/dbs/c-938280311-20200125-00 comment=NONE
+Finished Control File and SPFILE Autobackup at 25/01/2020 15:44:15
 
 released channel: d1
 
 sql statement: alter system archive log current
 
 allocated channel: d3
-channel d3: SID=74 device type=DISK
+channel d3: SID=69 device type=DISK
 
-Starting backup at 12/01/2020 00:33:41
+Starting backup at 25/01/2020 15:44:23
 current log archived
 channel d3: starting compressed archived log backup set
 channel d3: specifying archived log(s) in backup set
-input archived log thread=1 sequence=17 RECID=1 STAMP=1029457135
-input archived log thread=1 sequence=18 RECID=2 STAMP=1029457143
-input archived log thread=1 sequence=19 RECID=3 STAMP=1029457148
-input archived log thread=1 sequence=20 RECID=4 STAMP=1029457151
-input archived log thread=1 sequence=21 RECID=5 STAMP=1029457504
-input archived log thread=1 sequence=22 RECID=6 STAMP=1029457510
-input archived log thread=1 sequence=23 RECID=7 STAMP=1029457525
-input archived log thread=1 sequence=24 RECID=8 STAMP=1029458020
-input archived log thread=1 sequence=25 RECID=9 STAMP=1029458021
-channel d3: starting piece 1 at 12/01/2020 00:33:42
-channel d3: finished piece 1 at 12/01/2020 00:33:49
-piece handle=/u02/backup/cdbprd/fisico/files/arch_CDBPRD_17_1_1029458022.arc tag=BKPARCHIVE comment=NONE
-channel d3: backup set complete, elapsed time: 00:00:07
+input archived log thread=1 sequence=18 RECID=1 STAMP=1029454128
+input archived log thread=1 sequence=19 RECID=2 STAMP=1029454433
+input archived log thread=1 sequence=20 RECID=3 STAMP=1029454436
+input archived log thread=1 sequence=21 RECID=4 STAMP=1029709194
+input archived log thread=1 sequence=22 RECID=5 STAMP=1030020150
+input archived log thread=1 sequence=23 RECID=6 STAMP=1030032585
+input archived log thread=1 sequence=24 RECID=7 STAMP=1030035995
+input archived log thread=1 sequence=25 RECID=8 STAMP=1030041830
+input archived log thread=1 sequence=26 RECID=9 STAMP=1030215842
+input archived log thread=1 sequence=27 RECID=10 STAMP=1030224674
+input archived log thread=1 sequence=28 RECID=11 STAMP=1030567650
+input archived log thread=1 sequence=29 RECID=12 STAMP=1030586714
+input archived log thread=1 sequence=30 RECID=13 STAMP=1030632994
+input archived log thread=1 sequence=31 RECID=14 STAMP=1030635862
+input archived log thread=1 sequence=32 RECID=15 STAMP=1030635863
+channel d3: starting piece 1 at 25/01/2020 15:44:26
+channel d3: finished piece 1 at 25/01/2020 15:46:41
+piece handle=/u02/backup/dbteste/fisico/files/arch_DBTESTE_8_1_1030635866.arc tag=BKPARCHIVE comment=NONE
+channel d3: backup set complete, elapsed time: 00:02:15
 channel d3: deleting archived log(s)
-archived log file name=/u02/archivelog/dbprod/DBPROD1_17_1027590646.arc RECID=1 STAMP=1029457135
-archived log file name=/u02/archivelog/dbprod/DBPROD1_18_1027590646.arc RECID=2 STAMP=1029457143
-archived log file name=/u02/archivelog/dbprod/DBPROD1_19_1027590646.arc RECID=3 STAMP=1029457148
-archived log file name=/u02/archivelog/dbprod/DBPROD1_20_1027590646.arc RECID=4 STAMP=1029457151
-archived log file name=/u02/archivelog/dbprod/DBPROD1_21_1027590646.arc RECID=5 STAMP=1029457504
-archived log file name=/u02/archivelog/dbprod/DBPROD1_22_1027590646.arc RECID=6 STAMP=1029457510
-archived log file name=/u02/archivelog/dbprod/DBPROD1_23_1027590646.arc RECID=7 STAMP=1029457525
-archived log file name=/u02/archivelog/dbprod/DBPROD1_24_1027590646.arc RECID=8 STAMP=1029458020
-archived log file name=/u02/archivelog/dbprod/DBPROD1_25_1027590646.arc RECID=9 STAMP=1029458021
-Finished backup at 12/01/2020 00:33:51
+archived log file name=/u02/archivelog/dbteste/DBTESTE1_18_1027593916.arc RECID=1 STAMP=1029454128
+archived log file name=/u02/archivelog/dbteste/DBTESTE1_19_1027593916.arc RECID=2 STAMP=1029454433
+archived log file name=/u02/archivelog/dbteste/DBTESTE1_20_1027593916.arc RECID=3 STAMP=1029454436
+archived log file name=/u02/archivelog/dbteste/DBTESTE1_21_1027593916.arc RECID=4 STAMP=1029709194
+archived log file name=/u02/archivelog/dbteste/DBTESTE1_22_1027593916.arc RECID=5 STAMP=1030020150
+archived log file name=/u02/archivelog/dbteste/DBTESTE1_23_1027593916.arc RECID=6 STAMP=1030032585
+archived log file name=/u02/archivelog/dbteste/DBTESTE1_24_1027593916.arc RECID=7 STAMP=1030035995
+archived log file name=/u02/archivelog/dbteste/DBTESTE1_25_1027593916.arc RECID=8 STAMP=1030041830
+archived log file name=/u02/archivelog/dbteste/DBTESTE1_26_1027593916.arc RECID=9 STAMP=1030215842
+archived log file name=/u02/archivelog/dbteste/DBTESTE1_27_1027593916.arc RECID=10 STAMP=1030224674
+archived log file name=/u02/archivelog/dbteste/DBTESTE1_28_1027593916.arc RECID=11 STAMP=1030567650
+archived log file name=/u02/archivelog/dbteste/DBTESTE1_29_1027593916.arc RECID=12 STAMP=1030586714
+archived log file name=/u02/archivelog/dbteste/DBTESTE1_30_1027593916.arc RECID=13 STAMP=1030632994
+archived log file name=/u02/archivelog/dbteste/DBTESTE1_31_1027593916.arc RECID=14 STAMP=1030635862
+archived log file name=/u02/archivelog/dbteste/DBTESTE1_32_1027593916.arc RECID=15 STAMP=1030635863
+Finished backup at 25/01/2020 15:46:45
 
-Starting Control File and SPFILE Autobackup at 12/01/2020 00:33:51
-piece handle=/u01/app/oracle/product/19.3.0.0/dbhome_1/dbs/c-1047786992-20200112-01 comment=NONE
-Finished Control File and SPFILE Autobackup at 12/01/2020 00:33:54
+Starting Control File and SPFILE Autobackup at 25/01/2020 15:46:45
+piece handle=/u01/app/oracle/product/19.3.0.0/dbhome_1/dbs/c-938280311-20200125-01 comment=NONE
+Finished Control File and SPFILE Autobackup at 25/01/2020 15:46:52
 
 released channel: d3
 
 allocated channel: d2
-channel d2: SID=74 device type=DISK
+channel d2: SID=69 device type=DISK
 
-Starting backup at 12/01/2020 00:33:55
+Starting backup at 25/01/2020 15:46:53
 channel d2: starting compressed full datafile backup set
 channel d2: specifying datafile(s) in backup set
 including current control file in backup set
-channel d2: starting piece 1 at 12/01/2020 00:33:57
-channel d2: finished piece 1 at 12/01/2020 00:33:58
-piece handle=/u02/backup/cdbprd/fisico/files/cf_CDBPRD_19_1_1029458036.ctl tag=BKPCURRENTCTL comment=NONE
+channel d2: starting piece 1 at 25/01/2020 15:46:58
+channel d2: finished piece 1 at 25/01/2020 15:46:59
+piece handle=/u02/backup/dbteste/fisico/files/cf_DBTESTE_10_1_1030636015.ctl tag=BKPCURRENTCTL comment=NONE
 channel d2: backup set complete, elapsed time: 00:00:01
-Finished backup at 12/01/2020 00:33:58
+Finished backup at 25/01/2020 15:46:59
 
-Starting Control File and SPFILE Autobackup at 12/01/2020 00:33:58
-piece handle=/u01/app/oracle/product/19.3.0.0/dbhome_1/dbs/c-1047786992-20200112-02 comment=NONE
-Finished Control File and SPFILE Autobackup at 12/01/2020 00:34:01
+Starting Control File and SPFILE Autobackup at 25/01/2020 15:46:59
+piece handle=/u01/app/oracle/product/19.3.0.0/dbhome_1/dbs/c-938280311-20200125-02 comment=NONE
+Finished Control File and SPFILE Autobackup at 25/01/2020 15:47:02
 
 released channel: d2
 
 allocated channel: d4
-channel d4: SID=74 device type=DISK
+channel d4: SID=69 device type=DISK
 
-Starting backup at 12/01/2020 00:34:03
+Starting backup at 25/01/2020 15:47:04
 channel d4: starting compressed full datafile backup set
 channel d4: specifying datafile(s) in backup set
 including current SPFILE in backup set
-channel d4: starting piece 1 at 12/01/2020 00:34:04
-channel d4: finished piece 1 at 12/01/2020 00:34:05
-piece handle=/u02/backup/cdbprd/fisico/files/sp_CDBPRD_21_1_1029458044.ora tag=BKPCURRENTSPFILE comment=NONE
+channel d4: starting piece 1 at 25/01/2020 15:47:04
+channel d4: finished piece 1 at 25/01/2020 15:47:05
+piece handle=/u02/backup/dbteste/fisico/files/sp_DBTESTE_12_1_1030636024.ora tag=BKPCURRENTSPFILE comment=NONE
 channel d4: backup set complete, elapsed time: 00:00:01
-Finished backup at 12/01/2020 00:34:05
+Finished backup at 25/01/2020 15:47:05
 
-Starting Control File and SPFILE Autobackup at 12/01/2020 00:34:05
-piece handle=/u01/app/oracle/product/19.3.0.0/dbhome_1/dbs/c-1047786992-20200112-03 comment=NONE
-Finished Control File and SPFILE Autobackup at 12/01/2020 00:34:13
+Starting Control File and SPFILE Autobackup at 25/01/2020 15:47:05
+piece handle=/u01/app/oracle/product/19.3.0.0/dbhome_1/dbs/c-938280311-20200125-03 comment=NONE
+Finished Control File and SPFILE Autobackup at 25/01/2020 15:47:09
 
 released channel: d4
 
@@ -517,7 +512,7 @@ RMAN>
 
 Recovery Manager complete.
 ```
-Conforme é apresentado no log acima o bakup full do banco de produção foi executado com sucesso. :)
+Conforme é apresentado no log acima o bakup full do banco de dbteste foi executado com sucesso. :)
 
 **Muito bom!!!** neste artigo realizamos a importação do dump no ambiente **DBTESTE**, habilitamos o modo archivelog e executamos um backup full do ambiente de produção, resolvemos os itens **1.5, 1.6**, e **1.7** no próximo post daremos continuidade nos outros itens. 
 

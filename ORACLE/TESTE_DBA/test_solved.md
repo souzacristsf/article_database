@@ -105,7 +105,7 @@ Database Version    : Oracle Enterprise 19C
         </ol>
 
 2. Clone Database <br>
-    2.1 Crie uma nova isntância DBTREINA a partir do RMAN FULL da base DBTESTE <br>
+    2.1 Crie uma nova instância DBTREINA a partir do RMAN FULL da base DBTESTE <br>
     2.2 Configure as áreas de Memória Manualmente
 
 
