@@ -311,7 +311,7 @@ total 43M
 -rw-r-----. 1 oracle oinstall  21K Jan 11 23:33 DBTESTE1_19_1027593916.arc
 -rw-r-----. 1 oracle oinstall 1.0K Jan 11 23:33 DBTESTE1_20_1027593916.arc
 ```
-### Realizando um backup físico da instância de produção com RMAN
+### Realizando um backup físico da instância de DBTESTE com RMAN
 Resposta **1.7**) Para realizar um backup full, vamos criar um script ```shell``` e salvar em um destino (meu destino ```/u02/script/BkpRmanFull.sh```) para executar esse script de backup como processo background.
 
 Conteúdo do script *BkpRmanFull.sh*:<br>
