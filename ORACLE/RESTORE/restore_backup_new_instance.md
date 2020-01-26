@@ -1,5 +1,5 @@
 
-# Restaurando backup físico da base DBTESTE em uma nova instância DBTREINA no mesmo servidor <br>
+# Restaurando um backup físico em uma nova instância em um mesmo servidor <br>
 ##### Publicado em 26/01/2020 por [Michel Souza](https://www.linkedin.com/in/michel-ferreira-souza/)
 
 Fala galera, uma atividade que precisa de bastante atenção na vida do DBA é a restauração do backup em uma instância no mesmo servidor do ambiente produtivo. Um dos maiores receio dos **DBA's** é sobrescrever algum arquivo do ambiente produtivo ou ambiente de origem do backup.  <br>

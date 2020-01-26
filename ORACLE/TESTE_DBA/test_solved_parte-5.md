@@ -162,13 +162,13 @@ TABLESPACE_NAME      OWNER      OBJECT_NAME          OBJECT_TYPE             CRE
 GOSALES_TSRECO       GOSALESDW  EMP_RANKING_DIM_BKP  TABLE                   20/01/2020 21:41:52 20/01/2020 21:41:52 2020-01-20:21:41:52
 ```
 ## Restaurando backup físico da base DBTESTE em uma nova instância DBTREINA no mesmo servidor <br>
-Resposta **2.1**) Resolvi essa questão em um artigo separado, acompanhe [aqui](https://github.com/souzacristsf/article_database/blob/master/ORACLE/TESTE_DBA/test_solved_parte-4.md#realizando-um-backup-f%C3%ADsico-da-inst%C3%A2ncia-de-dbteste-com-rman).<br>
+Resposta **2.1**) Resolvi essa questão em um artigo separado, acompanhe [aqui](https://github.com/souzacristsf/article_database/blob/master/ORACLE/RESTORE/restore_backup_new_instance.md).<br>
 
-**Muito bom!!!** neste artigo realizamos a importação de uma tabela na base de teste, remapeando para um novo nome como tabela de backup. Realizamos a restauração de backup em uma nova instância, criando a mesma com os parâmetros necessário para o restore, resolvemos os últimos itens **1.8**, e **2.1** que estava faltando.  
+**Muito bom!!!** neste artigo realizamos a importação de uma tabela na base de teste, remapeando com um novo nome. Realizamos a restauração de backup em uma nova instância, criando a mesma com os parâmetros necessário para o restore, resolvemos os últimos itens **1.8**, e **2.1** que estava faltando.  
 
 E isso é tudo, espero que essa série de artigos ajude você no dia a dia. hahahaha
 
-Até o próximo artigo PARTE 4 e vamos em frente!!!
+Até o próximo artigo e vamos em frente!!!
 
 #FocoForçaFé
 
