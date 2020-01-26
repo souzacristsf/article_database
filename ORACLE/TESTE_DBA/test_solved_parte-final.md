@@ -1,8 +1,8 @@
 
 
-<img src="../img/teste_dba_4.png" alt="" width="80%">
+<img src="../img/teste_dba_fim.png" alt="" width="80%">
 
-# Resolvendo teste para vaga de (DBA) - PARTE 5
+# Resolvendo teste para vaga de (DBA) - Parte Final
 ##### Publicado em 12/01/2020 por [Michel Souza](https://www.linkedin.com/in/michel-ferreira-souza/)
 
 Fala galera, continuando com a série aprendendo com **teste de DBA para entrevista de emprego**. Neste post darei continuidade da [Parte 4](https://github.com/souzacristsf/article_database/blob/master/ORACLE/TESTE_DBA/test_solved_parte-3.md), apresentando a resolução de um teste para vaga de emprego de DBA. <br> 
