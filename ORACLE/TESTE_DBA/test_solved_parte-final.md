@@ -56,11 +56,11 @@ Database Version    : Oracle Enterprise 19C
           <>1.5 Importe o Schema GOSALESDW e aplique todos os grants existentes na base origem. (Resolvido <a href="https://github.com/souzacristsf/article_database/blob/master/ORACLE/TESTE_DBA/test_solved_parte-4.md">Parte - 4</a>).</ul><br>
           <ul>1.6 Colocar o banco em Modo Archivelog. (Resolvido <a href="https://github.com/souzacristsf/article_database/blob/master/ORACLE/TESTE_DBA/test_solved_parte-4.md">Parte - 4</a>).</ul><br>
           <ul>1.7 Execute um Backup RMAN Full da instância dbprod. (Resolvido <a href="https://github.com/souzacristsf/article_database/blob/master/ORACLE/TESTE_DBA/test_solved_parte-4.md">Parte - 4</a>). </ul><br>
-          <ul>1.8 Importar a tabela EMP_RANKING_DIM com nome EMP_RANKING_DIM_BKP, no schema GOSALESDW em uma nova tablespace chamada GOSALES_TSRECO.<ul>
+          <ul>1.8 Importar a tabela EMP_RANKING_DIM com nome EMP_RANKING_DIM_BKP, no schema GOSALESDW em uma nova tablespace chamada GOSALES_TSRECO. (Resolvido <a href="https://github.com/souzacristsf/article_database/blob/master/ORACLE/TESTE_DBA/test_solved_parte-final.md">Parte - Final</a>). </ul><br>
         </ol>
 
 2. Clone Database <br>
-    2.1 Crie uma nova instância DBTREINA a partir do RMAN FULL da base DBTESTE <br>
+    2.1 Crie uma nova instância DBTREINA a partir do RMAN FULL da base DBTESTE (Resolvido <a href="https://github.com/souzacristsf/article_database/blob/master/ORACLE/TESTE_DBA/test_solved_parte-final.md">Parte - Final</a>). <br>
 
 # Solução 
 ## Realizando a importação da tabela EMP_RANKING_DIM 
