@@ -106,8 +106,6 @@ Database Version    : Oracle Enterprise 19C
 
 2. Clone Database <br>
     2.1 Crie uma nova instância DBTREINA a partir do RMAN FULL da base DBTESTE <br>
-    2.2 Configure as áreas de Memória Manualmente
-
 
 # Solução 
 Resposta **1** e **1.1**) Uma das formas de criar um banco de dados Oracle é utilizando a interface gráfica DBCA. Como já foi criado um banco de produção ```dbprod``` na sessão anterior, vamos utilizar o mesmo comando para criar a base ```DBTESTE```.

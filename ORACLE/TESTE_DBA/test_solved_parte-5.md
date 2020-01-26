@@ -61,7 +61,6 @@ Database Version    : Oracle Enterprise 19C
 
 2. Clone Database <br>
     2.1 Crie uma nova instância DBTREINA a partir do RMAN FULL da base DBTESTE <br>
-    2.2 Configure as áreas de Memória Manualmente
 
 # Solução 
 ## Realizando a importação da tabela EMP_RANKING_DIM 
@@ -162,11 +161,12 @@ TABLESPACE_NAME      OWNER      OBJECT_NAME          OBJECT_TYPE             CRE
 -------------------- ---------- -------------------- ----------------------- ------------------- ------------------- -------------------
 GOSALES_TSRECO       GOSALESDW  EMP_RANKING_DIM_BKP  TABLE                   20/01/2020 21:41:52 20/01/2020 21:41:52 2020-01-20:21:41:52
 ```
-## Criando uma instância DBTREINA a partir do backup físico da base DBTESTE no mesmo servidor <br>
+## Restaurando backup físico da base DBTESTE em uma nova instância DBTREINA no mesmo servidor <br>
+Resposta **2.1**) Resolvi essa questão em um artigo separado, acompanhe [aqui](https://github.com/souzacristsf/article_database/blob/master/ORACLE/TESTE_DBA/test_solved_parte-4.md#realizando-um-backup-f%C3%ADsico-da-inst%C3%A2ncia-de-dbteste-com-rman).<br>
 
-**Muito bom!!!** neste artigo realizamos a importação do dump no ambiente **DBTESTE**, habilitamos o modo archivelog e executamos um backup full do ambiente de produção, resolvemos os itens **1.5, 1.6**, e **1.7** no próximo post daremos continuidade nos outros itens. 
+**Muito bom!!!** neste artigo realizamos a importação de uma tabela na base de teste, remapeando para um novo nome como tabela de backup. Realizamos a restauração de backup em uma nova instância, criando a mesma com os parâmetros necessário para o restore, resolvemos os últimos itens **1.8**, e **2.1** que estava faltando.  
 
-E isso é tudo, espero que você esteja praticando também no seu ambiente de teste para aprendermos juntos. hahahaha
+E isso é tudo, espero que essa série de artigos ajude você no dia a dia. hahahaha
 
 Até o próximo artigo PARTE 4 e vamos em frente!!!
 
