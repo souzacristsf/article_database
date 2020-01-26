@@ -11,6 +11,12 @@ Esse tipo de atividade tem se tornado frenquente no meu dia a dia, tanto restaur
 
 Neste artigo apresento como restaurar um backup realizado da base DBTESTE no artigo [Parte 4](https://github.com/souzacristsf/article_database/blob/master/ORACLE/TESTE_DBA/test_solved_parte-4.md#realizando-um-backup-f%C3%ADsico-da-inst%C3%A2ncia-de-dbteste-com-rman) na instância **DBTREINA** no mesmo servidor de origem do backup. <br>
 
+# Ambiente
+Estou utilizando as seguintes versões do banco de dados e S.O.
+```
+Sistema Operacional : Oracle Linux 7.6 64 Bits
+Database Version    : Oracle Enterprise 19C
+```
 Primeiro, vamos verificar quantas instâncias existem no servidor que será realizado o restore.
 ```bash
 [oracle@lab-ol8-19c => (dbteste ~]$ ps -ef |grep pmon
