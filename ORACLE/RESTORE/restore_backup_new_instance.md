@@ -407,6 +407,16 @@ SQL> alter tablespace temp add tempfile '/u02/oradata/dbtreina/temp01.dbf' size 
 Tablespace altered.
 ```
 
+Checando o status do banco de dados.
+```sql
+select database_role, NAME, status, OPEN_MODE, LOG_MODE, GUARD_STATUS, TO_CHAR(Current_scn, '9999999999999999') "Current SCN", resetlogs_time from v$database, v$instance;
+
+DATABASE_ROLE    NAME      STATUS       OPEN_MODE      LOG_MODE     GUARD_S Current SCN   RESETLOGS_TIME
+---------------- --------- ------------ -------------- ------------ ------- -----------   ----------------
+PRIMARY          DBTREINA  OPEN         READ WRITE      NOARCHIVELOG NONE    3556996       25/01/2020 23:26:25
+
+```
+
 Pronto, backup restaurado em uma nova instância com sucesso 👏👏👏👏 :). Não esqueça de criar o arquivo de senha, nesse caso pode-se copiar o arquivo do banco de origem do backup.
 
 **Muito bom!!!** neste artigo realizamos a importação de uma tabela na base de teste, remapeando para um novo nome como tabela de backup. Realizamos a restauração de backup em uma nova instância, criando a mesma com os parâmetros necessário para o restore, resolvemos os últimos itens **1.8**, e **2.1** que estava faltando.  
