@@ -273,7 +273,7 @@ SET LOG_FILE_NAME_CONVERT='+DGRECO/dbprod/onlinelog/','+DGRECO/dbteste/onlinelog
 SET LOG_ARCHIVE_FORMAT='dbteste_%t_%s_%r.arc'
 set LOG_ARCHIVE_DEST='/orabin01/dbteste/archive/';
 }
-```
+```    
 
 <font color="gree" size="4"><strong>Parabéns</strong> 👏👏👏👏.</font><br>
 Depois de tratar os erros possíveis na clonagem de base, conforme o log abaixo do RMAN, clonagem finalizada com sucesso!!!
