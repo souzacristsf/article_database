@@ -277,7 +277,7 @@ set LOG_ARCHIVE_DEST='/orabin01/dbteste/archive/';
 
 <font color="gree" size="4"><strong>Parabéns</strong> 👏👏👏👏.</font><br>
 Depois de tratar os erros possíveis na clonagem de base, conforme o log abaixo do RMAN, clonagem finalizada com sucesso!!!
-Veja o log completo aqui.
+Veja o log completo aqui.  
 
 ```sql
 datafile 5 switched to datafile copy
