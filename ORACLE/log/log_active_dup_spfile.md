@@ -18,6 +18,7 @@ allocate auxiliary channel ch2 type disk;
 SQL 'alter system switch logfile';
 duplicate target database to dbteste from active database
 SPFILE
+PARAMETER_VALUE_CONVERT='dbprod','dbteste'
 SET DB_NAME='dbteste'
 SET DB_UNIQUE_NAME='dbteste'
 SET CONTROL_FILES='+DGDATA'

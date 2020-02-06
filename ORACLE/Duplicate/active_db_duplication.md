@@ -1,22 +1,34 @@
 
-# Restaurando um backup físico em uma nova instância e em um mesmo servidor de produção<br>
-##### Publicado em 26/01/2020 por [Michel Souza](https://www.linkedin.com/in/michel-ferreira-souza/)
+![](../img/active_db_duplicate.png)
+
+# Realizando um Active Database Duplication no mesmo servidor e solucionando alguns erros cometidos no clone.<br>
+##### Publicado em 01/02/2020 por [Michel Souza](https://www.linkedin.com/in/michel-ferreira-souza/)
 
 Fala galera, uma das atividades que faço com frequência é clonagem de base de dados, seja o clone diante de um backup(```Backup-based duplication```) ou do banco de dados ativo (```active database duplication```). <br>
-Neste artigo vou apresentar passo a passo como realizar uma clonagem de base diante do banco de dados ativo ou seja um ```active database duplication```. 
+Neste artigo vou apresentar passo a passo como realizar uma clonagem de base, diante do banco de dados ativo ou seja um ```active database duplication```. 
 
 > *"A melhor forma de aprender é ensinando ou compartilhando conhecimento."* 
 
-<font color="red" size="4"><strong>Observação: </strong>sugiro não sair executando o passo a passo deste artigo sem ler todo o conteúdo, pois o objetivo também é mostrar os erros cometidos na clonagem de base.</font><br>
+<font color="red" size="4"><strong>Observação: </strong>sugiro não sair executando o passo a passo deste artigo sem ler todo o conteúdo, pois o objetivo também é mostrar os erros possíveis na clonagem de base.</font><br>
 
 ## Cenário  
-As empresas normalmente realizam clonagem de base para ambiente de teste ou treinamento com o intuito de manter os dados o mais próximo possível do ambiente de produção, utilizando para homologar uma atualização do sistema ou realizar procedimentos que não podem ser realizados em ambiente produtivo.
+As empresas normalmente realizam clonagem de base para ambiente de teste ou treinamento com o intuito de manter os dados o mais próximo possível do ambiente de produção, utilizando-o para homologar uma atualização do sistema ou realizar procedimentos que não podem ser realizados em ambiente produtivo.
 
 Para realizar a clonagem de base, tenho os seguintes ambientes.
 > **Observação**: estou assumindo que você já tenha as duas instâncias criadas para realizar o procedimento. Caso a instância auxiliar não exista, pode-se criar utilizando DBCA ou no [modo silencioso](https://github.com/souzacristsf/article_database/blob/master/ORACLE/CREATEDB/silent.md). Outra forma é criar um **PFILE** e **SPFILE** para subir uma instância com o minimo de parâmetros possível, esse procedimento realizo neste [artigo](https://github.com/souzacristsf/article_database/blob/master/ORACLE/RESTORE/restore_backup_new_instance.md).
 
 <img src="../img/dados.png" alt="" width="80%"> <br>
 > **Observação**: nota-se que o processo está sendo executado no mesmo servidor do banco de dados de origem, tenha um backup disponivel e atualizado do ambiente produtivo.
+
+No processo do clone com o Rman, se faz necessário as duas instância terem as mesmas senhas para o usúario **SYS**, verifique se a instância auxiliar possui o arquivo de senha, caso não exista é necessário criar o arquivo. Veja nesse [link](https://www.thegeekdiary.com/how-to-create-the-oracle-password-file-using-orapwd-command/) como criar o arquivo de senha ou copie o arquivo do ambiente origem/target  localizado no ```$ORACLE_HOME/dbs/orapwSID```. <br>
+O exemplo abaixo faz a cópia do arquivo de senha do ambiente origem/target para ambiente destino/auxiliar:
+```bash
+# Ambas instância estão no mesmo servidor e o arquivo de senha no filesystem local
+cp $ORACLE_HOME/dbs/orapwdbprod  $ORACLE_HOME/dbs/orapwdbteste
+
+# Ambas instância estão em servidores separados e o arquivo de senha no filesystem local
+scp $ORACLE_HOME/dbs/orapwdbprod  oracle@192.168.20.15:/orabin01/app/oracle/product/11.2.0.4/dbhome_1/dbs/orapwdbteste
+```
 
 Para iniciarmos a clonagem de base é necessário que o banco auxiliar(ambiente destino) não esteja montado, ou seja tem que estar no estágio **STARTED**, conforme imagem abaixo.<br>
 <img src="../img/started_intance.png" alt="" width="80%">
@@ -78,6 +90,8 @@ SQL>
 ```
 
 Para resolver o erro **ORA-12528** é necessário realizar o registro no listener, conforme imagem abaixo.
+> **Observação**: caso realize o procedimento em servidores diferentes é necessário registrar no listener o serviço de cada instância. 
+
 <img src="../img/cad_listener.png" alt="" width="80%"> <br>
 O listener é responsável por manter e estabelecer conexões entre um cliente(Host do usuário ou servidor de aplicação) e o servidor de banco de dados Oracle, contudo, o listener é um processo do Oracle Net Services que gerencia conexões entre as aplicações e o servidor de banco de dados, entenda mais sobre o listener [aqui](https://docs.oracle.com/cd/E11882_01/network.112/e41945/listenercfg.htm#NETAG010).
 
@@ -87,14 +101,16 @@ Depois de registrar o serviço **dbteste** no listener.ora é necessário realiz
 Agora é possível conectar na instância através do listener e iniciar a clonagem de base, como mostra a imagem abaixo. <br>
 <img src="../img/connect_all.png" alt="" width="80%"> <br>
 
-## Iniciando a clonagem de base 
+# Iniciando a clonagem de base 
 
-Para realizar a clonagem de base usando a opção ```active database duplication``` é necessário informar alguns parâmetros e existem duas opções para o procedimento. 
+Para realizar a clonagem de base usando a opção ```active database duplication``` é necessário informar alguns parâmetros e de acordo com os testes realizados, existem quatro opções para realizar o ```mapeando dos arquivos físicos (datafiles)``` para o ambiente auxiliar/destino, segue em detalhes. <br>
+Realizar a clonagem de base: 
+ 1) Utilizando a cláusula SPFILE, essa opção no bloco ```run{}``` DUPLICATE restaurará o spfile do banco de dados de origem e será usado pelo banco de dados clone, depois de restaurado o spfile, pode-se setar os parâmetros explicitamente no comando duplicate, como por exemplo os parâmetros db_file_name_convert e log_file_name_convert.
+ 2) Utilizando o SPFILE ativo na instância auxiliar. Com o comando ```alter system set```, definindo os parâmetros db_file_name_convert e log_file_name_convert.
+ 3) Utilizando OMF (Oracle Managed Files), para usar essa opção é necessário que o parâmetro **db_create_file_dest** esteja setado, esse processo pode ser utilizado tanto no Item 1 e 2 e não é necessário informar o parâmetro db_file_name_convert.
+ 4) Utilizando o comando SET NEWNAME para mapear cada datafiles existem no ambiente origem/target para o ambiente destino/auxiliar.
 
- 1) Utilizar a opção SPFILE, sentando os parâmetros no comando duplicate.
- 2) Realizar a clonagem de base com SPFILE ativo na instância auxiliar.
-
-### Realizando o duplicate informando os parâmetros explicitamente no comando
+## 1) Realizando o duplicate informando os parâmetros explicitamente no comando
 Nesta seção vamos informar a opção SPFILE no comando duplicate e o parâmentros que compõem o spfile, segue a [Doc ID 1401333.1](https://support.oracle.com/epmos/faces/DocumentDisplay?_afrLoop=40484496464427&parent=EXTERNAL_SEARCH&sourceId=PROBLEM&id=1401333.1&_afrWindowMode=0&_adf.ctrl-state=r1iw3j6l4_53) e [Doc ID 1439632.1](https://support.oracle.com/epmos/faces/DocumentDisplay?_afrLoop=40473371771033&parent=EXTERNAL_SEARCH&sourceId=PROBLEM&id=1439632.1&_afrWindowMode=0&_adf.ctrl-state=r1iw3j6l4_4) com mais detalhes dos parâmetros necessários para um duplicate.<br>
 
 Veja os possíveis erros cometidos no procedimento de duplicação de base.<br>
@@ -109,6 +125,7 @@ Como comentado é importante informar alguns parâmetros no comando do duplicate
 - LOG_FILE_NAME_CONVERT
 - DB_FILE_NAME_CONVERT 
 - LOG_ARCHIVE_DEST
+- DB_CREATE_FILE_DEST   -- obs: usando essa opção, não precisa informar o db_file_name_convert.
 
 Veja no comando abaixo que podemos utilizar outros parâmetros que compõem o SPFILE para iniciar a clonagem de base.
 ```sql
@@ -142,9 +159,9 @@ NAME              TYPE          VALUE
 ---------------   -----------   ------------------------------
 spfile            string        +DGDATA/dbteste/spfiledbteste.ora
 ```
-Para resolver esse problema é necessario subir a instância **dbteste** com um PFILE, ou seja vamos iniciar a instância com pfile existente e com isso o parâmetro spfile não será setado.
+Para resolver esse problema é necessario subir a instância **dbteste** com um PFILE, ou seja vamos realizar a cópia do spfile e iniciar a instância com pfile copiado, com isso o parâmetro spfile não será setado.
 
-Primeiro é importante sempre salvar um copia e pfile a partir do spfile. 
+Para extrair os parâmetros do spfile e criar um novo pfile tanto para uso e cópia, utiza-se o comando abaixo. 
 ```sql
 SQL> create pfile='?/dbs/initdbtestenew.ora' from spfile;
 
@@ -168,7 +185,8 @@ NAME              TYPE          VALUE
 spfile            string        
 ```
 Nota-se que o parâmetro SPFILE não tem valor setado.
-Vamos executar o comando abaixo para iniciar novamente o duplicate, veja que agora no parâmetro ```CONTROL_FILES````estou setando apenas a nome do diskgroup ```+DGDATA```, pelo fato que já existe controlfile criados para a instância dbteste.
+Vamos executar o comando abaixo para iniciar novamente o duplicate, veja que agora no parâmetro ```CONTROL_FILES``` estou setando apenas a nome do diskgroup ```+DGDATA```, pelo fato que já existe controlfile criados para a instância dbteste e também mantermos a exclusividade do mesmo. <br>
+Caso o controlfile não exista ou foi removido na instância auxiliar, colocar o valor absoluto no parâmentro CONTROL_FILES, por exemplo: ```CONTROL_FILES='+DGDATA/dbteste/controlfile/controlfile01.ctl'```.
 ```sql
 run {
     allocate channel ch1 type disk;
@@ -198,7 +216,8 @@ Visto que o Rman identificou que não tem espaço no **DGDATA**, realizei a remo
 Executando novamente o comando duplicate, obtemos um novo erro, conforme mostra a imagem abaixo.  
 <img src="../img/datafile_exists.png" alt="" width="80%"> <br>
 <img src="../img/datafile_exists_temp.png" alt="" width="80%"> <br>
-> **Observação:** os erros na imagem acim é devido os parâmetros **LOG_FILE_NAME_CONVERT** **DB_FILE_NAME_CONVERT**, não estarem mapeado de acordo com o caminho "diretório absoluto". Como não estamos utilizando OMF (Oracle Managed Files) é necesário informar a diretório completo nos parâmetros db_file_name_convert e log_file_name_convert.
+> **Observação:** os erros na imagem acima é devido os parâmetros **LOG_FILE_NAME_CONVERT** **DB_FILE_NAME_CONVERT**, não estarem mapeado de acordo com o caminho "diretório absoluto". Como não estamos utilizando OMF (Oracle Managed Files) é necesário informar a diretório completo nos parâmetros db_file_name_convert e log_file_name_convert. <br>
+Contudo, existe a opção de uso do parâmetro ```PARAMETER_VALUE_CONVERT```, esse parâmetro é responsável por substituir qualquer string nos parâmetros do spfile de origem, exemplo: se adicionarmos o seguinte valor para o parâmetro ```PARAMETER_VALUE_CONVERT='dbprod','dbteste'```, caso o parâmetro **diagnostic_dest** foi defino como ```/<path>/dbprod/dump``` no spfile de origem. após o restore do spfile será modificado para ```/<path>/dbteste/dump```. 
 
 Alterando novamente o comando duplicate, tem-se o novo comando abaixo para a clonagem de base. Observe que agora estamos adicionando também o diretório do tempfile.
 ```sql
@@ -241,7 +260,7 @@ Erro por falta de espaço no DGDATA, informação alertlog.
 
 Agora o que resta é adicionar mais LUN's e reconhecer no banco de dados no diskgroup DGDATA, o que farei na próxima seção. 
 
-#### Ajustando espaço no diskgroup DGDATA
+### Ajustando espaço no diskgroup DGDATA
 A imagem abaixo apresenta o espaço disponível no DGDATA e DGRECO e o percentual já utilizado. Percebe-se a disponibilidade de dois discos como ```PROVISIONED```, irei utilizar o path **/dev/oracleasm/disks/DGDATA2** e apresentar o disco no banco de dados. <br>
 <img src="../img/space_diskgroup.png" alt="" width="80%"> <br>
 
@@ -278,7 +297,7 @@ run {
 ```    
 
 <font color="gree" size="4"><strong>Parabéns</strong> 👏👏👏👏.</font><br>
-Depois de tratar os erros possíveis na clonagem de base e executar o comando acima, conforme mostra o log abaixo do RMAN, a clonagem finalizada com sucesso!!! <br>
+Depois de tratar os erros gerados na clonagem de base e executar o comando acima, conforme mostra o log abaixo do RMAN, a clonagem foi finalizada com sucesso!!! <br>
 Veja o log completo [aqui](https://github.com/souzacristsf/article_database/blob/master/ORACLE/log/log_active_dup_spfile.md).  
 
 ```sql
@@ -307,7 +326,7 @@ released channel: ch2
 RMAN>
 ```
 
-### Realizando o duplicate com SPFILE existente na instância dbteste
+## 2) Realizando o duplicate com SPFILE existente na instância dbteste e definindo os parâmetros db_file_name_convert e log_file_name_convert.
 
 <font color="red"><strong>ATENÇÃO: estou realizando o procedimento em um ambiente de teste, leia todo o artigo antes de sair executando os comandos.</strong></font><br> 
 
@@ -399,10 +418,13 @@ duplicate target database to dbteste from active database nofilenamecheck;
 Executando o comando acima sem especificar os parâmetros db_file_name_convert e 
 log_file_name_convert no SPFILE, <font color="red" size="4"><strong>acabamos de parar o ambiente de produção</strong> 😱😱😱😱</font>. <br>
 
-<font color="red" size="4"><strong>Parabéns, acabamos de sobrescrever datafile original da produção</strong>😡😡😡😡</font>.
+<font color="red" size="4"><strong>Parabéns, acabamos de sobrescrever datafile do ambiente de produção</strong>😡😡😡😡</font>.
+
+Em que momento usamos o argumento **nofilenamecheck**? 🤔🤔🤔<br>
+Resposta: essa opção é utilizada, se o banco de dados clone residir em um servidor diferente e você deseja que os arquivos de dados do banco de dados clone sejam restaurados no mesmo local da origem, nesse caso, pode-se ocultar os parâmetros DB_FILE_NAME_CONVERT e LOG_FILE_NAME_COVERT, pelo fato das estruturas de diretórios serem iguais.
 
 Conforme mostra o pedaço do log do Rman, é necessário recuperar o ambiente produtivo **target/dbprod**, pelo fato que os arquivos foram sobrescrito e corrompidos no processo de clonagem de base. <br>
-Veja o log completo do problema [aqui](https://github.com/souzacristsf/article_database/blob/master/ORACLE/log/log_active_dup_spfile.md)
+Veja o log completo do problema [aqui](https://github.com/souzacristsf/article_database/blob/master/ORACLE/log/log_active_dup_nofilenamecheck.md.md)
 ```sql
 released channel: aux1
 released channel: aux2
@@ -418,7 +440,7 @@ ORA-01110: data file 6: '+DGDATA/dbprod/datafile/data_teste01.dbf'
 RMAN> 
 ```
 
-Se analisarmos o alertlog da instância DBPROD, temos os erros abaixo.
+Se analisarmos o alertlog da instância DBPROD, temos os erros abaixo. <br>
 Alertlog da instância dbprod:
 ```sql
 Archived Log entry 45 added for thread 1 sequence 155 ID 0x435da197 dest 1:
@@ -487,7 +509,7 @@ A imagem abaixo, mostra que a instância dbteste está utilizando o datafiles 6,
 <font color="gree" size="4"><strong>Vamos resolver a CAGADA</strong> 😎😎😎😎.</font><br>
 Para resolver o problema e disponibilizar o ambiente de produção o quanto antes, é necessário baixar a instância auxiliar "dbteste" com o comando ```shut immediate``` e subir a instância dbprod, visto que a mesma já se encontrava no estágio mount. 
 
-Para recuperar o banco de dados de produção, realizamos os comandos ```restore database``` e ```recover database``` no Rman.
+Para recuperar o banco de dados de produção, realizamos os comandos ```restore database``` e ```recover database``` no Rman. Nesse caso poderia recuperar apenas o datafile 6, como mostrou no erro.
 
 Veja o log completo e o comando utilizado para a recuperação do ambiente de produção [aqui](https://github.com/souzacristsf/article_database/blob/master/ORACLE/log/restore_and_recover_dbprod.md). Foi possivél aplicar todos os archivelog e recuperar a base.
 
@@ -504,7 +526,7 @@ INSTANCE_NAME    STATUS       VERSION           HOST_NAME
 dbprod           OPEN         11.2.0.4.0        lab.oracle.asm
 ``` 
 
-### Realizando o duplicate com SPFILE existente na instância dbteste - <font color="gree" size="4"><strong> FORMA CORRETA</strong>.</font>
+### Realizando o duplicate com SPFILE existente na instância dbteste e definindo os parâmetros db_file_name_convert e log_file_name_convert - <font color="gree" size="4"><strong> FORMA CORRETA</strong>.</font>
 Para realizar a clonagem de base é necessário setar os seguintes parâmetros abaixo:
 ```sql
 SQL> show parameter convert
@@ -524,14 +546,14 @@ select name, ISSYS_MODIFIABLE from v$parameter where name like '%db_file_name_co
 
 NAME                           ISSYS_MOD
 ------------------------------ ---------
-db_file_name_convert           FALSE   => esse valor indica que o parâmetro é estático e necessita do restart do banco de dados para valer o valor setado.
+db_file_name_convert           FALSE   -- esse valor indica que o parâmetro é estático e necessita do restart do banco de dados para valer o valor setado.
 
 
 SQL>  select name, ISSYS_MODIFIABLE from v$parameter where name like '%undo_retention%';
 
 NAME                           ISSYS_MOD
 ------------------------------ ---------
-undo_retention                 IMMEDIATE  => o valor é alterado no mesmo instante, não precisar reinicar o banco.
+undo_retention                 IMMEDIATE  -- o valor é alterado no mesmo instante, não precisar reinicar o banco.
 ```
 
 Setando os parâmentros para iniciar a clonagem de base.
@@ -592,12 +614,17 @@ run {
 
 Veja o log completo da clonagem de base [aqui](https://github.com/souzacristsf/article_database/blob/master/ORACLE/log/log_active_dup_with_spfile.md).
 
-### Realizando active duplicate database utilizando OMF
-Outra opção que podemos utilizar para a clonagem de base é utilizando OMF (Oracle Managed Files), nesse caso, não é necesário setar os parâmetros db_file_name_convert e log_file_name_convert no arquivo SPFILE, apenas o parâmetro **db_create_file_dest** é suficiente.
+## 3) Realizando active duplicate database utilizando OMF
+Outra opção que podemos utilizar para a clonagem de base é utilizando OMF (Oracle Managed Files), nesse caso, não é necesário setar os parâmetros db_file_name_convert no arquivo SPFILE, apenas o parâmetro **db_create_file_dest** é suficiente, caso os arquido de redolog online esteja em outros diskgroup pode-se utilizar os parâmetros ```db_create_online_log_dest_n```.
 
+Utilizei os seguintes parâmetros abaixo para a clonagem de base com OMF, lembrendo que a instância auxiliar permanece no estágio nomount.
 ```sql
 -- Caso seja ambiente filesytem, trocar pelo diretório, exemplo: /u01/oradata/dbteste
 SQL>  alter system set db_create_file_dest='+DGDATA' scope=spfile;
+
+System altered.
+
+SQL>  alter system set db_create_online_log_dest_1='+DGRECO' scope=spfile;
 
 System altered.
 
@@ -605,8 +632,23 @@ SQL> show parameter db_create_file_dest
 
 NAME                            TYPE        VALUE
 ------------------------------- ----------- ---------------
-db_create_file_dest             string      +DGDATA
+db_create_file_dest             string      +DGDATA     -- mapeamento para os datafiles
 
+SQL> show parameter db_create_online_log_dest
+
+NAME                                 TYPE        VALUE
+------------------------------------ ----------- ------------------------------
+db_create_online_log_dest_1          string      +DGRECO    -- mapeamento para os redologs
+db_create_online_log_dest_2          string
+db_create_online_log_dest_3          string
+db_create_online_log_dest_4          string
+db_create_online_log_dest_5          string
+
+SQL> show parameter spfile
+
+NAME              TYPE          VALUE
+---------------   -----------   ------------------------------
+spfile            string        +DGDATA/dbteste/spfiledbteste.ora
 
 SQL> show parameter convert
 
@@ -626,6 +668,186 @@ run {
     duplicate target database to dbteste from active database;
 }
 ```
+<font color="red" size="4"><strong>Observação:</strong></font> nessa opção é necessário excluir os arquivos de dados antes de iniciar a clonagem, visto que o Rman não sobrescreve ou exclui os mesmos.<br>
+
 <font color="gree" size="4"><strong>Muito bom, clonagem de base realizada com sucesso</strong>. 👏👏👏👏</font>
 
 Veja o log completo da clonagem de base [aqui](https://github.com/souzacristsf/article_database/blob/master/ORACLE/log/log_active_duplicate_OMF.md). 
+
+Conforme mostra a imagem abaixo, os arquivos de dados foram mapeado, como informado nos parâmetros **db_create_file_dest** e **db_create_online_log_dest_1**.
+<img src="../img/clone_OMF.png" alt="" width="80%"> <br>
+
+## 4) Active Duplicate Database com SET NEWNAME para mapear cada datafiles existem no ambiente origem/target para o ambiente destino/auxiliar.
+Antes de iniciar a clonagem de base com a opção SET NEWNAME é necessário conectar no banco origem/target e identificar quais os datafiles existentes.
+
+Verificando os destinos dos datafiles via Rman.
+```sql
+[oracle@lab ~]$ . oraenv <<< dbprod
+ORACLE_SID = [dbteste] ? The Oracle base remains unchanged with value /orabin01/app/oracle
+[oracle@lab ~]$
+[oracle@lab ~]$ rman target /
+
+Recovery Manager: Release 11.2.0.4.0 - Production on Sun Feb 2 16:39:04 2020
+
+Copyright (c) 1982, 2011, Oracle and/or its affiliates.  All rights reserved.
+
+connected to target database: DBPROD (DBID=1130215834)
+
+RMAN> show schema;^H^C
+user interrupt received
+
+
+RMAN> report schema;
+
+using target database control file instead of recovery catalog
+Report of database schema for database with db_unique_name DBPROD
+
+List of Permanent Datafiles
+===========================
+File Size(MB) Tablespace           RB segs Datafile Name
+---- -------- -------------------- ------- ------------------------
+1    1240     SYSTEM               ***     +DGDATA/dbprod/datafile/system.256.1031136205
+2    540      SYSAUX               ***     +DGDATA/dbprod/datafile/sysaux.257.1031136207
+3    410      UNDOTBS1             ***     +DGDATA/dbprod/datafile/undotbs1.258.1031136207
+4    5        USERS                ***     +DGDATA/dbprod/datafile/users.259.1031136207
+5    319      EXAMPLE              ***     +DGDATA/dbprod/datafile/example.269.1031136307
+6    300      TESTE                ***     +DGDATA/dbprod/datafile/data_teste01.dbf
+
+List of Temporary Files
+=======================
+File Size(MB) Tablespace           Maxsize(MB) Tempfile Name
+---- -------- -------------------- ----------- --------------------
+1    29       TEMP                 32767       +DGDATA/dbprod/tempfile/temp.268.1031136301
+
+RMAN>
+```
+
+Identificando o destino dos redolog no ambiente dbprod. Essa identificação é necessária para mapear no mesmo destino.
+```sql
+set line 1000;
+column member format a50
+select 
+  a.group#
+, a.member
+, b.bytes/1024/1024 "size"
+, b.STATUS
+, ARCHIVED 
+from v$logfile a, v$log b  where a.group# = b.group#;
+SQL> SQL>
+    GROUP# MEMBER                                                   size STATUS           ARC
+---------- -------------------------------------------------- ---------- ---------------- ---
+         3 +DGRECO/dbprod/onlinelog/redo3_01.log                      50 CURRENT          NO
+         3 +DGRECO/dbprod/onlinelog/redo3_02.log                      50 CURRENT          NO
+         2 +DGRECO/dbprod/onlinelog/redo2_01.log                      50 INACTIVE         YES
+         2 +DGRECO/dbprod/onlinelog/redo2_02.log                      50 INACTIVE         YES
+         1 +DGRECO/dbprod/onlinelog/redo1_01.log                      50 INACTIVE         YES
+         1 +DGRECO/dbprod/onlinelog/redo1_02.log                      50 INACTIVE         YES
+
+
+```
+
+Identificando o destino dos redolog no ambiente dbteste. Essa identificação é para pode criar no mesmo destino.
+```sql
+set line 1000;
+column member format a50
+select 
+  a.group#
+, a.member
+, b.bytes/1024/1024 "size"
+, b.STATUS
+, ARCHIVED 
+from v$logfile a, v$log b  where a.group# = b.group#;
+SQL> SQL>
+    GROUP# MEMBER                                                   size STATUS           ARC
+---------- -------------------------------------------------- ---------- ---------------- ---
+         3 +DGRECO/dbteste/onlinelog/group_3.270.1031329685           50 UNUSED           YES
+         2 +DGRECO/dbteste/onlinelog/group_2.269.1031329683           50 UNUSED           YES
+         1 +DGRECO/dbteste/onlinelog/group_1.268.1031329683           50 CURRENT          NO
+```
+
+Para realizar a clonagem de base utilizando **SET NEWNAME**, pode-se utilizar o comando abaixo. Nota-se que o comando mapeia também os arquivos de redolog e multiplexando-o.
+```sql
+run {
+allocate channel ch1 type disk;
+allocate auxiliary channel ch2 type disk;
+SQL 'alter system switch logfile';
+set newname for datafile 1 to '+DGDATA/dbteste/datafile/system01.dbf';
+set newname for datafile 2 to '+DGDATA/dbteste/datafile/sysaux01.dbf';
+set newname for datafile 3 to '+DGDATA/dbteste/datafile/undotbs01.dbf';
+set newname for datafile 4 to '+DGDATA/dbteste/datafile/users01.dbf';
+set newname for datafile 5 to '+DGDATA/dbteste/datafile/example.dbf';
+set newname for datafile 6 to '+DGDATA/dbteste/datafile/data_teste01.dbf';
+set newname for tempfile 1 to '+DGDATA/dbteste/datafile/temp01.dbf';
+duplicate target database to dbteste from active database
+LOGFILE
+      GROUP 1 ('+DGRECO/dbteste/onlinelog/redo1_01.log', 
+               '+DGRECO/dbteste/onlinelog/redo1_02.log') SIZE 50M REUSE, 
+      GROUP 2 ('+DGRECO/dbteste/onlinelog/redo2_01.log', 
+               '+DGRECO/dbteste/onlinelog/redo2_02.log') SIZE 50M REUSE,
+	  GROUP 3 ('+DGRECO/dbteste/onlinelog/redo3_01.log', 
+               '+DGRECO/dbteste/onlinelog/redo3_02.log') SIZE 50M REUSE;
+}
+```
+Veja o log completo [aqui](https://github.com/souzacristsf/article_database/blob/master/ORACLE/log/log_active_dup_setnewname_logile.md). <br>
+<font color="gree" size="4"><strong>Sucesso, comando validado, clonagem de base realizada com sucesso</strong>. 👏👏👏👏</font> <br>
+
+
+Também realizei a validação do comando abaixo, utilizando a opção **SET NEWNAME** e a opção de usar a opção do SPFILE explicitamente, nesse procedimento o valor do parâmentro SPFILE no ambiente destino/auxiliar não pode estar setado. Pois o SPFILE será restaurado do ambiente origem/target e na sequência alguns parâmetros serão modificados.  
+```sql
+run {
+allocate channel ch1 type disk;
+allocate auxiliary channel ch2 type disk;
+SQL 'alter system switch logfile';
+set newname for datafile 1 to '+DGDATA/dbteste/datafile/system01.dbf';
+set newname for datafile 2 to '+DGDATA/dbteste/datafile/sysaux01.dbf';
+set newname for datafile 3 to '+DGDATA/dbteste/datafile/undotbs01.dbf';
+set newname for datafile 4 to '+DGDATA/dbteste/datafile/users01.dbf';
+set newname for datafile 5 to '+DGDATA/dbteste/datafile/example.dbf';
+set newname for datafile 6 to '+DGDATA/dbteste/datafile/data_teste01.dbf';
+set newname for tempfile 1 to '+DGDATA/dbteste/datafile/temp01.dbf';
+duplicate target database to dbteste from active database
+SPFILE
+    PARAMETER_VALUE_CONVERT='dbprod','dbteste'
+    SET DB_NAME='dbteste'
+    SET DB_UNIQUE_NAME='dbteste'
+    SET CONTROL_FILES='+DGDATA'
+    set SGA_TARGET='1024M'
+    set PGA_AGGREGATE_TARGET='512M'
+    SET DIAGNOSTIC_DEST='/orabin01/app/oracle'
+    SET DB_FILE_NAME_CONVERT='+DGDATA/dbprod/datafile/','+DGDATA/dbteste/datafile/', '+DGDATA/dbprod/tempfile/','+DGDATA/dbteste/tempfile/'
+    SET LOG_FILE_NAME_CONVERT='+DGRECO/dbprod/onlinelog/','+DGRECO/dbteste/onlinelog/'
+    SET LOG_ARCHIVE_FORMAT='dbteste_%t_%s_%r.arc'
+    set LOG_ARCHIVE_DEST='/orabin01/dbteste/archive/';
+}
+```
+
+Veja o log completo [aqui](https://github.com/souzacristsf/article_database/blob/master/ORACLE/log/log.active_dup_setnewname_sofile.md). <br>
+<font color="gree" size="4"><strong>Sucesso, comando validado, clonagem de base realizada com sucesso</strong>. 👏👏👏👏</font> <br>
+
+
+> **Observação:** Caso nesse processo tenha obtido o erro ORA-19625 ou o erro ORA-06025 em um duplicate from backup, veja esse aqui como solucionar.
+
+Erro ORA-19625
+```sql
+Oracle instance shut down
+released channel: ch1
+RMAN-00571: ===========================================================
+RMAN-00569: =============== ERROR MESSAGE STACK FOLLOWS ===============
+RMAN-00571: ===========================================================
+RMAN-03002: failure of Duplicate Db command at 02/02/2020 22:29:54
+RMAN-05501: aborting duplication of target database
+RMAN-03015: error occurred in stored script Memory Script
+RMAN-06059: expected archived log not found, loss of archived log compromises recoverability
+ORA-19625: error identifying file /orabin01/archive/dbprod_1_212_1031136284.arc
+ORA-27037: unable to obtain file status
+Linux-x86_64 Error: 2: No such file or directory
+Additional information: 3
+```
+
+**Muito Bom!!!**, neste artigo foi possível mapear alguns erros que podem ser cometidos no processo de ```clonagem de base```` com active database duplication no mesmo servidor de origem dos dados para o clone. Apresentei alguns comandos para execução do clone e quais os parâmetros necessários para cada tipo de clone.
+
+E isso é tudo, espero que você esteja praticando também no seu ambiente de teste para aprendermos juntos. hahahaha
+
+#FocoForçaFé
+
+[Michel Souza](https://www.linkedin.com/in/michel-ferreira-souza/)
