@@ -825,9 +825,9 @@ Veja o log completo [aqui](https://github.com/souzacristsf/article_database/blob
 <font color="gree" size="4"><strong>Sucesso, comando validado, clonagem de base realizada com sucesso</strong>. 👏👏👏👏</font> <br>
 
 
-> **Observação:** Caso nesse processo tenha obtido o erro ORA-19625 ou o erro ORA-06025 em um duplicate from backup, veja esse aqui como solucionar.
+> **Observação:** Caso nesse processo tenha obtido o erro ORA-19625 ou o erro ORA-06025 em um duplicate from backup, veja esse [aqui](https://github.com/souzacristsf/article_database/blob/master/ORACLE/ERROR/ORA-06025-ORA-19625.md) como solucionar.
 
-Erro ORA-19625
+Erro ORA-19625.
 ```sql
 Oracle instance shut down
 released channel: ch1
